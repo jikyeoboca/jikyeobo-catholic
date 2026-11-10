@@ -4,19 +4,19 @@
 // lat, lng: 실제 위도·경도. 구글 지도에서 건물을 우클릭하면 맨 위에 나오는 숫자예요.
 //           (예: lat: 37.48650, lng: 126.80130) 비어 있으면(null) 가까운 순 정렬에서 맨 뒤로 가요.
 const AED_DATA = {
-  3:  { type: "aed", name: "김수환관(K)",                floors: ["1층"],         x: 26.1, y: 72.7, lat: null, lng: null, detail: "1층 주출입구 방풍문 앞" },
-  4:  { type: "aed", name: "스테파노기숙사(K)",          floors: ["4층", "10층"], x: 17.4, y: 68.6, lat: null, lng: null, detail: "4층 안내실 앞, 10층 엘리베이터 앞" },
-  5:  { type: "aed", name: "안드레아(A)",                floors: ["1층", "6층"],  x: 28.2, y: 65.6, lat: null, lng: null, detail: "1층 주출입구 로비, 10층 엘리베이터 앞" },
-  6:  { type: "aed", name: "마리아관(M)",                floors: ["1층"],         x: 37.5, y: 71.6, lat: null, lng: null, detail: "1층 출입구 방풍문 안" },
-  7:  { type: "aed", name: "니콜스관(N)",                floors: ["4층"],         x: 33.8, y: 58.6, lat: null, lng: null, detail: "4층 카페 하랑 옆" },
-  9:  { type: "aed", name: "다솔관(D)",                  floors: ["2층"],         x: 33.8, y: 43.1, lat: null, lng: null, detail: "2층 안내실 옆 로비" },
-  10: { type: "aed", name: "비르투스관(V)",              floors: ["1층"],         x: 30.6, y: 52.8, lat: null, lng: null, detail: "1층 보건실 앞" },
-  11: { type: "aed", name: "학생미래인재관(B)",          floors: ["1층"],         x: 44.0, y: 46.5, lat: null, lng: null, detail: "1층 CUK 드림라운지 앞" },
-  13: { type: "aed", name: "미카엘관-행정동(H)",         floors: ["1층"],         x: 51.4, y: 34.2, lat: null, lng: null, detail: "1층 로비" },
-  15: { type: "aed", name: "베리타스관(중앙도서관)(L관)", floors: ["2층"],         x: 60.7, y: 34.7, lat: null, lng: null, detail: "2층 출입구 안내데스크" },
-  16: { type: "aed", name: "성심관(SH)",                 floors: ["2층"],         x: 77.8, y: 23.2, lat: null, lng: null, detail: "2층 출입구 좌측" },
-  17: { type: "aed", name: "정진석추기경약학관(NP)",     floors: ["1층"],         x: 64.4, y: 21.8, lat: null, lng: null, detail: "1층 안내실 옆" },
-  18: { type: "aed", name: "콘서트홀(CH)",               floors: ["2층"],         x: 81.2, y: 38.4, lat: null, lng: null, detail: "2층 로비 출입구 옆" }
+  3:  { type: "aed", name: "김수환관(K)",                floors: ["1층"],         x: 26.1, y: 72.7, lat: 37.48589, lng: 126.80359, detail: "1층 주출입구 방풍문 앞" },
+  4:  { type: "aed", name: "스테파노기숙사(K)",          floors: ["4층", "10층"], x: 17.4, y: 68.6, lat: 37.48518, lng: 126.80331, detail: "4층 안내실 앞, 10층 엘리베이터 앞" },
+  5:  { type: "aed", name: "안드레아(A)",                floors: ["1층", "6층"],  x: 28.2, y: 65.6, lat: 37.48570, lng: 126.80302, detail: "1층 주출입구 로비, 10층 엘리베이터 앞" },
+  6:  { type: "aed", name: "마리아관(M)",                floors: ["1층"],         x: 37.5, y: 71.6, lat: 37.48629, lng: 126.80260, detail: "1층 출입구 방풍문 안" },
+  7:  { type: "aed", name: "니콜스관(N)",                floors: ["4층"],         x: 33.8, y: 58.6, lat: 37.48580, lng: 126.80247, detail: "4층 카페 하랑 옆" },
+  9:  { type: "aed", name: "다솔관(D)",                  floors: ["2층"],         x: 33.8, y: 43.1, lat: 37.48586, lng: 126.80141, detail: "2층 안내실 옆 로비" },
+  10: { type: "aed", name: "비르투스관(V)",              floors: ["1층"],         x: 30.6, y: 52.8, lat: 37.48565, lng: 126.80212, detail: "1층 보건실 앞" },
+  11: { type: "aed", name: "학생미래인재관(B)",          floors: ["1층"],         x: 44.0, y: 46.5, lat: 37.48652, lng: 126.80136, detail: "1층 CUK 드림라운지 앞" },
+  13: { type: "aed", name: "미카엘관-행정동(H)",         floors: ["1층"],         x: 51.4, y: 34.2, lat: 37.48641, lng: 126.80025, detail: "1층 로비" },
+  15: { type: "aed", name: "베리타스관(중앙도서관)(L관)", floors: ["2층"],         x: 60.7, y: 34.7, lat: 37.48681, lng: 126.80008, detail: "2층 출입구 안내데스크" },
+  16: { type: "aed", name: "성심관(SH)",                 floors: ["2층"],         x: 77.8, y: 23.2, lat: 37.48753, lng: 126.79867, detail: "2층 출입구 좌측" },
+  17: { type: "aed", name: "정진석추기경약학관(NP)",     floors: ["1층"],         x: 64.4, y: 21.8, lat: 37.48675, lng: 126.79902, detail: "1층 안내실 옆" },
+  18: { type: "aed", name: "콘서트홀(CH)",               floors: ["2층"],         x: 81.2, y: 38.4, lat: 37.48809, lng: 126.79958, detail: "2층 로비 출입구 옆" }
 };
 
 // 불 아이콘이 나타날 수 있는 자리(가로·세로 %). 매일 이 중 한 곳이 골라져요.
