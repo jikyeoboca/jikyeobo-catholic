@@ -1,0 +1,82 @@
+:root{--bg:#ecebe6;--ink:#2b2f33;--muted:#6b6f73;--red:#d62b2b;--card:#fff;--line:#d9d7d0;--accent:#8a7650;--soft:#f3efe8}
+@media (prefers-color-scheme:dark){:root{--bg:#1d1f21;--ink:#ecebe6;--muted:#a3a6a9;--card:#2a2d30;--line:#3a3d40;--accent:#c9b48a;--soft:#2a2d30}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Pretendard",-apple-system,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;line-height:1.6}
+.wrap{max-width:760px;margin:0 auto;padding:24px 16px 48px}
+.wrap.wide{max-width:1100px}
+h1{font-size:1.6rem;margin:0 0 4px}
+.sub{color:var(--muted);margin:0 0 16px}
+.call{display:block;background:var(--red);color:#fff;text-align:center;font-weight:700;font-size:1.15rem;padding:14px;border-radius:10px;text-decoration:none;margin-bottom:16px}
+.back{color:var(--muted);text-decoration:none;display:inline-block;margin-bottom:16px}
+.box{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 20px;margin-bottom:16px}
+.box h2{font-size:1.1rem;margin:0 0 8px}
+.floors{font-size:1.4rem;font-weight:700;color:var(--red)}
+ol{padding-left:1.3em;margin:0}
+ol li{margin-bottom:6px}
+
+/* 상단 브랜드 */
+.brand{background:var(--soft);border-radius:14px;padding:18px 22px;margin-bottom:14px;display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.brand p{margin:0}
+.brand-en{font-size:.8rem;font-weight:700;color:var(--accent);letter-spacing:.02em}
+.brand-title{font-size:2rem;font-weight:800;margin:2px 0 8px;line-height:1.2}
+.brand-slogan{font-size:1.05rem}
+.brand-desc{font-size:.9rem;color:var(--muted);margin-top:4px !important}
+.feedback{flex-shrink:0;font-size:.9rem;font-weight:700;color:var(--accent);text-decoration:none;border:1px solid var(--accent);border-radius:999px;padding:6px 14px;white-space:nowrap}
+.feedback:hover{background:var(--accent);color:var(--card)}
+
+/* 시설 종류 필터 */
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+.filters button{font:inherit;font-size:.95rem;font-weight:700;padding:8px 16px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer}
+.filters button[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--bg)}
+.filters button:disabled{cursor:not-allowed;color:var(--muted);background:transparent;border-style:dashed}
+.filters small{font-weight:400;margin-left:4px}
+
+/* 지도 + 목록 */
+.layout{display:grid;gap:20px;align-items:start}
+@media (min-width:860px){
+  .layout{grid-template-columns:minmax(0,2fr) minmax(260px,1fr)}
+  .side{position:sticky;top:16px;max-height:calc(100vh - 32px);overflow-y:auto}
+}
+.map{position:relative;width:100%}
+.map img.base{display:block;width:100%;height:auto;border-radius:12px}
+.side-head{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:8px}
+.list-title{font-size:1rem;margin:0}
+.near-btn{font:inherit;font-size:.85rem;font-weight:700;padding:6px 12px;border-radius:8px;border:1px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer}
+.near-status{font-size:.85rem;color:var(--muted);margin:0 0 8px}
+.near-status:empty{display:none}
+.link-btn{font:inherit;background:none;border:0;padding:0;color:var(--ink);text-decoration:underline;cursor:pointer}
+.list{display:grid;gap:8px}
+.list a{display:flex;justify-content:space-between;align-items:center;gap:8px;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:10px 14px;color:var(--ink);text-decoration:none}
+.list a b{font-weight:600}
+.list a span{color:var(--muted);text-align:right}
+.list a em{font-style:normal;font-weight:700;color:var(--red);margin-left:8px}
+.empty{color:var(--muted)}
+
+/* 핀 + 마우스 말풍선 */
+.pin{position:absolute;width:5.5%;transform:translate(-50%,-100%)}
+.pin img{display:block;width:100%;height:auto;filter:drop-shadow(0 2px 2px rgba(0,0,0,.3));transition:transform .15s;transform-origin:50% 100%}
+.pin:hover,.pin:focus-visible{z-index:10}
+.pin:hover img,.pin:focus-visible img{transform:scale(1.2)}
+.pin:focus-visible{outline:3px solid var(--ink);outline-offset:2px;border-radius:50%}
+.tip{display:none;position:absolute;left:50%;bottom:calc(100% + 6px);transform:translateX(-50%);width:max-content;max-width:200px;background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:8px 10px;font-size:.85rem;line-height:1.45;box-shadow:0 4px 12px rgba(0,0,0,.15);pointer-events:none;text-align:left}
+.tip strong{display:block}
+@media (hover:hover){.pin:hover .tip,.pin:focus-visible .tip{display:block}}
+
+/* 오늘의 불 아이콘 */
+.fire{position:absolute;transform:translate(-50%,-50%);width:6%;aspect-ratio:1;min-width:30px;border-radius:50%;border:2px solid #fff;background:#ffe3c4;box-shadow:0 2px 6px rgba(0,0,0,.3);cursor:pointer;padding:0;display:flex;align-items:center;justify-content:center;font-size:clamp(14px,2.2vw,22px);z-index:5;animation:flicker 1.6s ease-in-out infinite}
+.fire:hover,.fire:focus-visible{z-index:11;outline:3px solid var(--red);outline-offset:2px}
+@keyframes flicker{0%,100%{transform:translate(-50%,-50%) scale(1)}50%{transform:translate(-50%,-50%) scale(1.12)}}
+@media (prefers-reduced-motion:reduce){.fire{animation:none}}
+
+/* 팝업 (119 확인, 위치 동의, 소화기 사용법) */
+.confirm-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.45);display:flex;align-items:center;justify-content:center;z-index:100;padding:16px}
+.confirm-box{background:var(--card);color:var(--ink);border-radius:14px;padding:22px;width:100%;max-width:340px;text-align:center}
+.confirm-box > p:first-child{margin:0 0 12px;font-size:1.1rem;font-weight:700}
+.confirm-box .small{font-size:.9rem;color:var(--muted);margin:0 0 16px;text-align:left}
+.info-box{max-width:420px;max-height:calc(100vh - 32px);overflow-y:auto}
+.info-box ol{text-align:left;margin:0 0 14px}
+.info-box ol b{display:block}
+.confirm-btns{display:flex;gap:10px;margin-top:18px}
+.confirm-btns button{flex:1;padding:12px;border-radius:10px;border:1px solid var(--line);font-size:1rem;font-weight:700;cursor:pointer;background:var(--card);color:var(--ink)}
+.confirm-btns .yes{background:var(--red);border-color:var(--red);color:#fff}
+.confirm-btns .ok{background:var(--ink);border-color:var(--ink);color:var(--bg)}

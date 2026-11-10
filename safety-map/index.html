@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>지켜보카 | 가톨릭대학교 성심교정 교내 안전맵</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main class="wrap wide">
+  <header class="brand">
+    <div class="brand-text">
+      <p class="brand-en">CUK CAMPUS SAFETY</p>
+      <h1 class="brand-title">지켜보카</h1>
+      <p class="brand-slogan">우리 학교, 우리가 지켜보카!</p>
+      <p class="brand-desc">가톨릭대학교 성심교정 교내 안전맵</p>
+    </div>
+    <a class="feedback" href="https://docs.google.com/forms/d/e/1FAIpQLSf9G-F5wqSUwxOPFtq1YzJvb1YgfGAvkvsJ7SHAIhN6EqPTEw/viewform?usp=header" target="_blank" rel="noopener">의견 보내기</a>
+  </header>
+  <p class="sub">지도의 빨간 핀을 누르면 그 건물의 소방 시설 위치와 사용법을 볼 수 있어요.</p>
+  <a class="call" href="tel:119">응급 상황이면 먼저 119에 전화하세요</a>
+
+  <div class="filters" role="group" aria-label="소방 시설 종류">
+    <button type="button" data-filter="all" aria-pressed="true">전체보기</button>
+    <button type="button" data-filter="aed" aria-pressed="false">AED(자동 심장 제세동기)</button>
+    <button type="button" disabled>완강기 <small>Coming soon…</small></button>
+  </div>
+
+  <div class="layout">
+    <div class="map" id="map">
+      <img class="base" src="images/campus-map.png" alt="캠퍼스 지도">
+    </div>
+    <aside class="side">
+      <div class="side-head">
+        <h2 class="list-title">소방 시설 목록</h2>
+        <button type="button" class="near-btn" id="near-btn">가까운 순으로 보기</button>
+      </div>
+      <p class="near-status" id="near-status" aria-live="polite"></p>
+      <nav class="list" id="list"></nav>
+    </aside>
+  </div>
+</main>
+<script src="data.js"></script>
+<script src="call-guard.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
