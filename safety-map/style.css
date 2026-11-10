@@ -1,5 +1,5 @@
-:root{--bg:#ecebe6;--ink:#2b2f33;--muted:#6b6f73;--red:#d62b2b;--card:#fff;--line:#d9d7d0;--accent:#8a7650;--soft:#f3efe8;--lemon:#fff3a3;--lemon-line:#e9d55c}
-@media (prefers-color-scheme:dark){:root{--bg:#1d1f21;--ink:#ecebe6;--muted:#a3a6a9;--card:#2a2d30;--line:#3a3d40;--accent:#c9b48a;--soft:#2a2d30;--lemon:#4a4421;--lemon-line:#6b6230}}
+:root{--bg:#ecebe6;--ink:#2b2f33;--muted:#6b6f73;--red:#d62b2b;--card:#fff;--line:#d9d7d0;--accent:#8a7650;--soft:#f3efe8;--lemon:#fffacd;--lemon-line:#f1e8b4;--tan:#d2b48c}
+@media (prefers-color-scheme:dark){:root{--bg:#1d1f21;--ink:#ecebe6;--muted:#a3a6a9;--card:#2a2d30;--line:#3a3d40;--accent:#c9b48a;--soft:#2a2d30;--lemon:#3d3a26;--lemon-line:#55513a;--tan:#d2b48c}}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:"Pretendard",-apple-system,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;line-height:1.6}
 .wrap{max-width:760px;margin:0 auto;padding:24px 16px 48px}
@@ -21,8 +21,8 @@ ol li{margin-bottom:6px}
 .brand-title{font-size:2rem;font-weight:800;margin:2px 0 8px;line-height:1.2}
 .brand-slogan{font-size:1.05rem}
 .brand-desc{font-size:.9rem;color:var(--muted);margin-top:4px !important}
-.feedback{flex-shrink:0;font-size:.9rem;font-weight:700;color:var(--accent);text-decoration:none;border:1px solid var(--accent);border-radius:999px;padding:6px 14px;white-space:nowrap}
-.feedback:hover{background:var(--accent);color:var(--card)}
+.feedback{flex-shrink:0;font-size:.9rem;font-weight:700;color:#3b2f1e;background:var(--tan);text-decoration:none;border:1px solid var(--tan);border-radius:999px;padding:6px 14px;white-space:nowrap}
+.feedback:hover,.feedback:focus-visible{filter:brightness(.92)}
 
 /* 시설 종류 필터 */
 .filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
@@ -92,3 +92,9 @@ ol li{margin-bottom:6px}
 
 /* AED 사용법 카드뉴스 */
 .guide{display:block;width:100%;height:auto;border-radius:8px;margin:4px 0 14px}
+
+/* 목록에 마우스를 올리면 해당 핀이 움직임 (PC) */
+.pin.active{z-index:10}
+.pin.active img{animation:pinPulse 1.6s ease-in-out infinite}
+@keyframes pinPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.25)}}
+@media (prefers-reduced-motion:reduce){.pin.active img{animation:none;transform:scale(1.2)}}

@@ -5,6 +5,7 @@
   const nearStatus = document.getElementById('near-status');
   let filter = 'all';
   let userPos = null;
+  const canHover = window.matchMedia('(hover: hover)').matches;
 
   // ---------- 공통 팝업 ----------
   function openModal(html, onReady) {
@@ -71,6 +72,14 @@
       const dist = (userPos && b.dist != null) ? '<em>' + formatDist(b.dist) + '</em>' : '';
       row.innerHTML = '<b>' + b.name + '</b><span>' + b.floors.join(', ') + dist + '</span>';
       list.appendChild(row);
+
+      // PC: 목록에 마우스를 올리거나 키보드로 고르면 해당 핀이 움직여요
+      if (canHover) {
+        row.addEventListener('mouseenter', function () { pin.classList.add('active'); });
+        row.addEventListener('mouseleave', function () { pin.classList.remove('active'); });
+      }
+      row.addEventListener('focus', function () { pin.classList.add('active'); });
+      row.addEventListener('blur', function () { pin.classList.remove('active'); });
     });
 
     if (!rows.length) list.innerHTML = '<p class="empty">표시할 시설이 없어요.</p>';

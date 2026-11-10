@@ -3,17 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>AED(자동 심장 제세동기) 정보 | 지켜보카</title>
+<title>AED(자동심장충격기) 정보 | 지켜보카</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <main class="wrap">
   <a class="back" href="index.html">← 캠퍼스 소방시설 지도로 돌아가기</a>
-  <h1 id="title">AED(자동 심장 제세동기) 정보</h1>
+  <h1 id="title">AED(자동심장충격기) 정보</h1>
   <a class="call" href="tel:119">119에 전화하기</a>
 
   <section class="box">
-    <h2>AED(자동 심장 제세동기) 위치</h2>
+    <h2>AED(자동심장충격기) 위치</h2>
     <div class="floors" id="floors"></div>
     <p id="detail"></p>
   </section>
@@ -22,12 +22,12 @@
     <h2>AED 사용 순서</h2>
     <img class="guide" src="images/aed-guide.jpg" alt="자동심장충격기 사용법 6단계: 1 전원 켜기, 2 패드 부착, 3 심장리듬 분석 중 접촉 금지, 4 모두 물러나게 한 뒤 심장충격 버튼 누르기, 5 바로 심폐소생술(가슴압박) 다시 시작, 6 2분마다 자동 재분석하므로 그 사이 심폐소생술 반복">
     <ol>
-      <li>119에 신고하고, 주변 사람에게 AED(자동 심장 제세동기)를 가져와 달라고 부탁하세요.</li>
-      <li>AED(자동 심장 제세동기) 전원을 켜고 음성 안내를 따르세요.</li>
+      <li>119에 신고하고, 주변 사람에게 AED(자동심장충격기)를 가져와 달라고 부탁하세요.</li>
+      <li>AED(자동심장충격기) 전원을 켜고 음성 안내를 따르세요.</li>
       <li>환자의 가슴을 드러내고 패드 그림대로 오른쪽 쇄골 아래와 왼쪽 옆구리에 패드를 붙이세요.</li>
       <li>심장 리듬을 분석하는 동안 아무도 환자에게 닿지 않게 하세요.</li>
       <li>쇼크가 필요하다는 안내가 나오면 모두 물러나게 한 뒤 쇼크 버튼을 누르세요.</li>
-      <li>바로 가슴압박을 다시 시작하고, 구급대가 올 때까지 AED(자동 심장 제세동기) 안내를 따르세요.</li>
+      <li>바로 가슴압박을 다시 시작하고, 구급대가 올 때까지 AED(자동심장충격기) 안내를 따르세요.</li>
     </ol>
   </section>
 </main>
@@ -37,7 +37,7 @@
   const id = new URLSearchParams(location.search).get('b');
   const b = AED_DATA[id];
   if (b) {
-    document.title = b.name + ' AED(자동 심장 제세동기) 정보 | 지켜보카';
+    document.title = b.name + ' AED(자동심장충격기) 정보 | 지켜보카';
     document.getElementById('title').textContent = b.name + ' AED';
     document.getElementById('floors').textContent = b.floors.join(', ');
     document.getElementById('detail').textContent = b.detail;
