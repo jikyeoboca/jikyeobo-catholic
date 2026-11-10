@@ -1,5 +1,5 @@
-:root{--bg:#ecebe6;--ink:#2b2f33;--muted:#6b6f73;--red:#d62b2b;--card:#fff;--line:#d9d7d0;--accent:#8a7650;--soft:#f3efe8}
-@media (prefers-color-scheme:dark){:root{--bg:#1d1f21;--ink:#ecebe6;--muted:#a3a6a9;--card:#2a2d30;--line:#3a3d40;--accent:#c9b48a;--soft:#2a2d30}}
+:root{--bg:#ecebe6;--ink:#2b2f33;--muted:#6b6f73;--red:#d62b2b;--card:#fff;--line:#d9d7d0;--accent:#8a7650;--soft:#f3efe8;--lemon:#fff3a3;--lemon-line:#e9d55c}
+@media (prefers-color-scheme:dark){:root{--bg:#1d1f21;--ink:#ecebe6;--muted:#a3a6a9;--card:#2a2d30;--line:#3a3d40;--accent:#c9b48a;--soft:#2a2d30;--lemon:#4a4421;--lemon-line:#6b6230}}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:"Pretendard",-apple-system,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;line-height:1.6}
 .wrap{max-width:760px;margin:0 auto;padding:24px 16px 48px}
@@ -15,7 +15,7 @@ ol{padding-left:1.3em;margin:0}
 ol li{margin-bottom:6px}
 
 /* 상단 브랜드 */
-.brand{background:var(--soft);border-radius:14px;padding:18px 22px;margin-bottom:14px;display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.brand{background:var(--lemon);border:1px solid var(--lemon-line);border-radius:14px;padding:18px 22px;margin-bottom:14px;display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
 .brand p{margin:0}
 .brand-en{font-size:.8rem;font-weight:700;color:var(--accent);letter-spacing:.02em}
 .brand-title{font-size:2rem;font-weight:800;margin:2px 0 8px;line-height:1.2}
@@ -80,3 +80,15 @@ ol li{margin-bottom:6px}
 .confirm-btns button{flex:1;padding:12px;border-radius:10px;border:1px solid var(--line);font-size:1rem;font-weight:700;cursor:pointer;background:var(--card);color:var(--ink)}
 .confirm-btns .yes{background:var(--red);border-color:var(--red);color:#fff}
 .confirm-btns .ok{background:var(--ink);border-color:var(--ink);color:var(--bg)}
+
+/* 미션 이벤트 배너 */
+.event{display:flex;align-items:center;gap:12px;background:var(--card);border:2px dashed var(--accent);border-radius:12px;padding:12px 16px;margin-bottom:14px;color:var(--ink);text-decoration:none}
+.event-icon{font-size:1.6rem;line-height:1}
+.event-text{flex:1;font-size:.95rem;color:var(--muted)}
+.event-text strong{display:block;color:var(--ink);font-size:1.02rem}
+.event-btn{flex-shrink:0;font-weight:700;font-size:.9rem;background:var(--accent);color:var(--card);border-radius:999px;padding:7px 14px;white-space:nowrap}
+.event:hover .event-btn,.event:focus-visible .event-btn{filter:brightness(1.1)}
+@media (max-width:520px){.event{flex-wrap:wrap}.event-btn{width:100%;text-align:center}}
+
+/* AED 사용법 카드뉴스 */
+.guide{display:block;width:100%;height:auto;border-radius:8px;margin:4px 0 14px}
