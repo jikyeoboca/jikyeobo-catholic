@@ -14,7 +14,7 @@ const AED_DATA = {
   10: { type: "aed", name: "비르투스관(V)",              floors: ["1층"],         x: 30.6, y: 52.8, lat: 37.48565, lng: 126.80212, photos: ["V_1.jpg"], detail: "1층 보건실 앞" },
   11: { type: "aed", name: "학생미래인재관(B)",          floors: ["1층"],         x: 44.0, y: 46.5, lat: 37.48652, lng: 126.80136, photos: ["B_2.jpg"], detail: "1층 CUK 드림라운지 앞" },
   13: { type: "aed", name: "미카엘관-행정동(H)",         floors: ["1층"],         x: 51.4, y: 34.2, lat: 37.48641, lng: 126.80025, detail: "1층 로비" },
-  15: { type: "aed", name: "베리타스관(중앙도서관)(L관)", floors: ["2층"],         x: 60.7, y: 34.7, lat: 37.48681, lng: 126.80008, photos: ["L_2.jpg"], detail: "2층 출입구 안내데스크" },
+  15: { type: "aed", name: "베리타스관(중앙도서관)(L)", floors: ["2층"],         x: 60.7, y: 34.7, lat: 37.48681, lng: 126.80008, photos: ["L_2.jpg"], detail: "2층 출입구 안내데스크" },
   16: { type: "aed", name: "성심관(SH)",                 floors: ["2층"],         x: 77.8, y: 23.2, lat: 37.48753, lng: 126.79867, photos: ["SH_2.jpg"], detail: "2층 출입구 좌측" },
   17: { type: "aed", name: "정진석추기경약학관(NP)",     floors: ["1층"],         x: 64.4, y: 21.8, lat: 37.48675, lng: 126.79902, photos: ["NP_1.jpg"], detail: "1층 안내실 옆" },
   18: { type: "aed", name: "콘서트홀(CH)",               floors: ["2층"],         x: 81.2, y: 38.4, lat: 37.48809, lng: 126.79958, photos: ["CH_2.jpg"], detail: "2층 로비 출입구 옆" }
