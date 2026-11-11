@@ -107,3 +107,4 @@ ol li{margin-bottom:6px}
 .photos figcaption{font-size:.85rem;font-weight:700;color:var(--muted);margin-top:4px}
 
 .hint{font-size:.85rem;color:var(--muted);margin:-6px 0 14px}
+.guide-link{display:block;cursor:zoom-in}
