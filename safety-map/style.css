@@ -105,3 +105,5 @@ ol li{margin-bottom:6px}
 .photos figure{margin:0}
 .photos img{display:block;width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;border-radius:8px;border:1px solid var(--line)}
 .photos figcaption{font-size:.85rem;font-weight:700;color:var(--muted);margin-top:4px}
+
+.hint{font-size:.85rem;color:var(--muted);margin:-6px 0 14px}
