@@ -7,13 +7,12 @@
 const AED_DATA = {
   3:  { type: "aed", name: "김수환관(K)",                floors: ["1층"],         x: 26.1, y: 72.7, lat: 37.48589, lng: 126.80359, photos: ["K_1.jpg"], detail: "1층 주출입구 방풍문 앞" },
   4:  { type: "aed", name: "스테파노기숙사(K)",          floors: ["4층", "10층"], x: 17.4, y: 68.6, lat: 37.48518, lng: 126.80331, photos: ["K_4.jpg", "K_10.jpg"], detail: "4층 안내실 앞, 10층 엘리베이터 앞" },
-  5:  { type: "aed", name: "안드레아(A)",                floors: ["1층", "6층"],  x: 28.2, y: 65.6, lat: 37.48570, lng: 126.80302, photos: ["A_1.jpg", "A_6.jpg"], detail: "1층 주출입구 로비, 6층 엘리베이터 앞" },
+  5:  { type: "aed", name: "안드레아(A)",                floors: ["1층", "6층"],  x: 28.2, y: 65.6, lat: 37.48570, lng: 126.80302, photos: ["A_1.jpg", "A_6.jpg"], detail: "1층 주출입구 로비, 10층 엘리베이터 앞" },
   6:  { type: "aed", name: "마리아관(M)",                floors: ["1층"],         x: 37.5, y: 71.6, lat: 37.48629, lng: 126.80260, photos: ["M_1.jpg"], detail: "1층 출입구 방풍문 안" },
   7:  { type: "aed", name: "니콜스관(N)",                floors: ["4층"],         x: 33.8, y: 58.6, lat: 37.48580, lng: 126.80247, photos: ["N_4.jpg"], detail: "4층 카페 하랑 옆" },
   9:  { type: "aed", name: "다솔관(D)",                  floors: ["2층"],         x: 33.8, y: 43.1, lat: 37.48586, lng: 126.80141, photos: ["D_2.jpg"], detail: "2층 안내실 옆 로비" },
   10: { type: "aed", name: "비르투스관(V)",              floors: ["1층"],         x: 30.6, y: 52.8, lat: 37.48565, lng: 126.80212, photos: ["V_1.jpg"], detail: "1층 보건실 앞" },
-  11: { type: "aed", name: "학생미래인재관(B)",          floors: ["1층"],         x: 44.0, y: 46.5, lat: 37.48652, lng: 126.80136, photos: ["B_1.jpg"], detail: "1층 CUK 드림라운지 앞" },
-  // 사진이 준비되면 아래 줄 맨 앞의 // 를 지우면 다시 나타나요.
+  11: { type: "aed", name: "학생미래인재관(B)",          floors: ["1층"],         x: 44.0, y: 46.5, lat: 37.48652, lng: 126.80136, photos: ["B_2.jpg"], detail: "1층 CUK 드림라운지 앞" },
   13: { type: "aed", name: "미카엘관-행정동(H)",         floors: ["1층"],         x: 51.4, y: 34.2, lat: 37.48641, lng: 126.80025, detail: "1층 로비" },
   15: { type: "aed", name: "베리타스관(중앙도서관)(L관)", floors: ["2층"],         x: 60.7, y: 34.7, lat: 37.48681, lng: 126.80008, photos: ["L_2.jpg"], detail: "2층 출입구 안내데스크" },
   16: { type: "aed", name: "성심관(SH)",                 floors: ["2층"],         x: 77.8, y: 23.2, lat: 37.48753, lng: 126.79867, photos: ["SH_2.jpg"], detail: "2층 출입구 좌측" },
