@@ -37,7 +37,13 @@
     return m < 1000 ? Math.round(m) + 'm' : (m / 1000).toFixed(1) + 'km';
   }
   function hasCoords(b) { return typeof b.lat === 'number' && typeof b.lng === 'number'; }
-
+  
+  // 건물 이름 끝 괄호 속 약어로 핀 고르기: "다솔관(D)" → images/pins/D.png
+  function pinSrc(b) {
+    const m = b.name.match(/\(([A-Z]+)관?\)$/);
+    return m ? 'images/pins/' + m[1] + '.png' : 'images/pin.png';
+  }
+  
   // ---------- 핀과 목록 그리기 ----------
   function render() {
     map.querySelectorAll('.pin').forEach(function (p) { p.remove(); });
@@ -62,7 +68,7 @@
       pin.style.top = b.y + '%';
       pin.setAttribute('aria-label', b.name + ' AED 정보');
       pin.innerHTML =
-        '<img src="images/pin.png" alt="">' +
+        '<img src="' + pinSrc(b) + '" alt="">' +
         '<span class="tip"><strong>' + b.name + '</strong>' +
         'AED ' + b.floors.join(', ') + '<br>' + b.detail + '</span>';
       map.appendChild(pin);
