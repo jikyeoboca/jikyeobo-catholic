@@ -115,3 +115,18 @@ ol li{margin-bottom:6px}
 .call-question{font-weight:700;font-size:1.05rem;margin:0}
 
 .pin{width:6.5%}
+
+/* 소화기 카드 넘기기 */
+.carousel{position:relative;margin:0 0 8px}
+.slides{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;list-style:none;margin:0;padding:0;border-radius:10px;background:#fff;scrollbar-width:none}
+.slides::-webkit-scrollbar{display:none}
+.slide{flex:0 0 100%;scroll-snap-align:center}
+.slide img{display:block;width:100%;aspect-ratio:4/3;object-fit:contain;user-select:none}
+.carousel .nav{position:absolute;top:50%;transform:translateY(-50%);width:36px;height:36px;border-radius:50%;border:0;padding:0;background:rgba(0,0,0,.45);color:#fff;font-size:1.5rem;line-height:1;cursor:pointer}
+.carousel .prev{left:6px}
+.carousel .next{right:6px}
+.carousel .nav:disabled{opacity:0;pointer-events:none}
+.carousel .count{position:absolute;top:8px;right:8px;background:rgba(0,0,0,.55);color:#fff;font-size:.75rem;font-weight:700;padding:2px 8px;border-radius:999px}
+.dots{display:flex;justify-content:center;gap:6px;margin:0 0 12px}
+.dot{width:7px;height:7px;border-radius:999px;border:0;padding:0;background:var(--line);cursor:pointer;transition:width .2s}
+.dot[aria-current="true"]{width:18px;background:var(--accent)}
