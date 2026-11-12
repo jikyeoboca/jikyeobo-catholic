@@ -37,6 +37,32 @@
     return m < 1000 ? Math.round(m) + 'm' : (m / 1000).toFixed(1) + 'km';
   }
   function hasCoords(b) { return typeof b.lat === 'number' && typeof b.lng === 'number'; }
+  
+  // ---------- 내 위치 점 ----------
+  // 위도·경도 → 지도 그림 위 위치(%). 건물 13곳 좌표로 맞춘 값이에요.
+  function toMap(lat, lng) {
+    const a = (lat - 37.4865) * 1e4, g = (lng - 126.801) * 1e4;
+    return { x: 1.534 * a - 0.521 * g + 49.327, y: 0.828 * a + 1.362 * g + 45.191 };
+  }
+  function showMe() {
+    let dot = document.getElementById('me-dot');
+    const p = userPos ? toMap(userPos.lat, userPos.lng) : null;
+    if (!p || p.x < 0 || p.x > 100 || p.y < 0 || p.y > 100) {
+      if (dot) dot.remove();
+      return false;
+    }
+    if (!dot) {
+      dot = document.createElement('span');
+      dot.id = 'me-dot';
+      dot.className = 'me-dot';
+      dot.setAttribute('role', 'img');
+      dot.setAttribute('aria-label', '내 위치');
+      map.appendChild(dot);
+    }
+    dot.style.left = p.x + '%';
+    dot.style.top = p.y + '%';
+    return true;
+  }
 
   // 건물 이름 끝 괄호 속 약어로 핀 고르기: "다솔관(D)" → images/pins/D.png
   function pinSrc(b) {
@@ -111,6 +137,7 @@
         userPos = null;
         nearStatus.textContent = '';
         render();
+        showMe();        
       };
     }
   }
@@ -123,13 +150,11 @@
     setStatus('내 위치를 찾는 중이에요…');
     navigator.geolocation.getCurrentPosition(function (pos) {
       userPos = { lat: pos.coords.latitude, lng: pos.coords.longitude };
-      const anyCoords = Object.values(AED_DATA).some(hasCoords);
-      if (anyCoords) {
-        setStatus('내 위치에서 가까운 순으로 정렬했어요. 실내에서는 수십 m 오차가 날 수 있어요.', true);
-      } else {
-        setStatus('아직 건물 좌표가 등록되지 않아 거리를 계산할 수 없어요.', true);
-      }
       render();
+      const onMap = showMe();
+      setStatus('내 위치에서 가까운 순으로 정렬했어요. ' +
+        (onMap ? '지도의 파 점이 내 위치예요. 실내에서는 수십 m 오차가 날 수 있어요.'
+               : '지금은 캠퍼스 밖이라 지도에는 내 위치를 표시하지 않았어요.'), true);
     }, function (err) {
       if (err.code === 1) {
         setStatus('위치 권한이 꺼져 있어요. 브라우저 설정에서 이 사이트의 위치 권한을 허용한 뒤 다시 눌러 주세요.');
