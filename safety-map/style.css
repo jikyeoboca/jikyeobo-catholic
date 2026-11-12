@@ -53,12 +53,19 @@ ol li{margin-bottom:6px}
 .list a em{font-style:normal;font-weight:700;color:var(--red);margin-left:8px}
 .empty{color:var(--muted)}
 
-/* 핀 + 마우스 말풍선 */
-.pin{position:absolute;width:25%;transform:translate(-50%,-100%)}
+/* ===== 핀 (크기·효과·말풍선 전체) ===== */
+.map .pin{position:absolute;width:7%;min-width:30px;transform:translate(-50%,-100%)}
 .pin img{display:block;width:100%;height:auto;filter:drop-shadow(0 2px 2px rgba(0,0,0,.3));transition:transform .15s;transform-origin:50% 100%}
-.pin:hover,.pin:focus-visible{z-index:10}
+.pin:hover,.pin:focus-visible,.pin.active{z-index:10}
 .pin:hover img,.pin:focus-visible img{transform:scale(1.2)}
 .pin:focus-visible{outline:3px solid var(--ink);outline-offset:2px;border-radius:50%}
+
+/* 목록에 마우스를 올리면 해당 핀이 움직임 */
+.pin.active img{animation:pinPulse 1.6s ease-in-out infinite}
+@keyframes pinPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.25)}}
+@media (prefers-reduced-motion:reduce){.pin.active img{animation:none;transform:scale(1.2)}}
+
+/* PC에서 핀에 마우스를 올리면 나오는 말풍선 */
 .tip{display:none;position:absolute;left:50%;bottom:calc(100% + 6px);transform:translateX(-50%);width:max-content;max-width:200px;background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:8px 10px;font-size:.85rem;line-height:1.45;box-shadow:0 4px 12px rgba(0,0,0,.15);pointer-events:none;text-align:left}
 .tip strong{display:block}
 @media (hover:hover){.pin:hover .tip,.pin:focus-visible .tip{display:block}}
@@ -153,3 +160,7 @@ button{font-family:inherit}
 .brand-main{display:flex;align-items:center;gap:14px}
 .brand-logo{width:64px;height:64px;flex-shrink:0}
 @media (max-width:480px){.brand-logo{width:44px;height:44px}}
+
+/* 정문 표시 */
+.gate{position:absolute;transform:translate(-50%,-50%);z-index:4;pointer-events:none}
+.gate span{display:block;background:#2b2f33;color:#fff;font-size:clamp(10px,1.6vw,13px);font-weight:800;padding:3px 9px;border-radius:999px;border:2px solid #fff;box-shadow:0 2px 4px rgba(0,0,0,.3);white-space:nowrap}
