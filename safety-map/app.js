@@ -165,30 +165,55 @@
     return FIRE_SPOTS[h % FIRE_SPOTS.length];
   }
 
-  function placeFire() {
-    const [x, y] = todaySpot();
-    const fire = document.createElement('button');
-    fire.type = 'button';
-    fire.className = 'fire';
-    fire.style.left = x + '%';
-    fire.style.top = y + '%';
-    fire.setAttribute('aria-label', '소화기 사용법 보기');
-    fire.innerHTML = '<span aria-hidden="true">🔥</span>';
     fire.addEventListener('click', function () {
+      const total = 6;
+      let slides = '';
+      let dots = '';
+      for (let i = 1; i <= total; i++) {
+        slides += '<li class="slide"><img src="images/fire/fire-' + i + '.jpg" alt="소화기 사용법 ' + i + '단계" draggable="false"></li>';
+        dots += '<button type="button" class="dot" aria-label="' + i + '번째 카드"></button>';
+      }
       openModal(
         '<div class="confirm-box info-box" role="dialog" aria-modal="true" aria-labelledby="fire-title">' +
         '<p id="fire-title">소화기 사용법</p>' +
         '<p class="small">오늘의 불은 연습용 표시예요. 실제 소화기 위치가 아니에요.</p>' +
-        '<ol>' +
-        '<li><b>안전핀 뽑기</b> 손잡이를 누르지 않은 상태에서 안전핀을 뽑아요.</li>' +
-        '<li><b>노즐 잡기</b> 노즐(호스)을 불이 난 쪽으로 향해요.</li>' +
-        '<li><b>손잡이 누르기</b> 손잡이를 힘껏 움켜쥐어요.</li>' +
-        '<li><b>골고루 뿌리기</b> 불의 아랫부분을 향해 빗자루로 쓸듯이 뿌려요.</li>' +
-        '</ol>' +
-        '<p class="small">실내에서는 출입구를 등지고, 실외에서는 바람을 등지고 사용하세요. 불이 천장까지 번졌거나 연기가 많으면 끄려 하지 말고 바로 대피한 뒤 119에 신고하세요.</p>' +
+        '<div class="carousel">' +
+          '<ul class="slides">' + slides + '</ul>' +
+          '<button type="button" class="nav prev" aria-label="이전 카드">‹</button>' +
+          '<button type="button" class="nav next" aria-label="다음 카드">›</button>' +
+          '<span class="count">1 / ' + total + '</span>' +
+        '</div>' +
+        '<div class="dots">' + dots + '</div>' +
+        '<p class="small">불이 천장까지 번졌거나 연기가 많으면 끄려 하지 말고 바로 대피한 뒤 119에 신고하세요.</p>' +
         '<div class="confirm-btns"><button type="button" class="yes ok">확인</button></div>' +
         '</div>',
         function (box, close) {
+          const track = box.querySelector('.slides');
+          const dotBtns = box.querySelectorAll('.dot');
+          const count = box.querySelector('.count');
+          const prev = box.querySelector('.prev');
+          const next = box.querySelector('.next');
+          function current() { return Math.round(track.scrollLeft / track.clientWidth); }
+          function go(i) {
+            i = Math.max(0, Math.min(total - 1, i));
+            track.scrollTo({ left: i * track.clientWidth, behavior: 'smooth' });
+          }
+          function update() {
+            const i = current();
+            count.textContent = (i + 1) + ' / ' + total;
+            dotBtns.forEach(function (d, k) { d.setAttribute('aria-current', k === i ? 'true' : 'false'); });
+            prev.disabled = i === 0;
+            next.disabled = i === total - 1;
+          }
+          track.addEventListener('scroll', function () { window.requestAnimationFrame(update); });
+          prev.onclick = function () { go(current() - 1); };
+          next.onclick = function () { go(current() + 1); };
+          dotBtns.forEach(function (d, k) { d.onclick = function () { go(k); }; });
+          box.addEventListener('keydown', function (e) {
+            if (e.key === 'ArrowLeft') go(current() - 1);
+            if (e.key === 'ArrowRight') go(current() + 1);
+          });
+          update();
           box.querySelector('.yes').onclick = close;
           box.querySelector('.yes').focus();
         }
