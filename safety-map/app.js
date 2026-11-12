@@ -37,13 +37,13 @@
     return m < 1000 ? Math.round(m) + 'm' : (m / 1000).toFixed(1) + 'km';
   }
   function hasCoords(b) { return typeof b.lat === 'number' && typeof b.lng === 'number'; }
-  
+
   // 건물 이름 끝 괄호 속 약어로 핀 고르기: "다솔관(D)" → images/pins/D.png
   function pinSrc(b) {
     const m = b.name.match(/\(([A-Z]+)관?\)$/);
     return m ? 'images/pins/' + m[1] + '.png' : 'images/pin.png';
   }
-  
+
   // ---------- 핀과 목록 그리기 ----------
   function render() {
     map.querySelectorAll('.pin').forEach(function (p) { p.remove(); });
@@ -164,6 +164,16 @@
     for (const ch of kst) { h ^= ch.charCodeAt(0); h = Math.imul(h, 16777619) >>> 0; }
     return FIRE_SPOTS[h % FIRE_SPOTS.length];
   }
+
+  function placeFire() {
+    const [x, y] = todaySpot();
+    const fire = document.createElement('button');
+    fire.type = 'button';
+    fire.className = 'fire';
+    fire.style.left = x + '%';
+    fire.style.top = y + '%';
+    fire.setAttribute('aria-label', '소화기 사용법 보기');
+    fire.innerHTML = '<span aria-hidden="true">🔥</span>';
 
     fire.addEventListener('click', function () {
       const total = 6;
