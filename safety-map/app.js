@@ -182,6 +182,27 @@
     );
   });
 
+  // ---------- 완강기 사용법 팝업 ----------
+  const escapeBtn = document.getElementById('escape-btn');
+  if (escapeBtn) {
+    escapeBtn.addEventListener('click', function () {
+      openModal(
+        '<div class="confirm-box info-box" role="dialog" aria-modal="true" aria-labelledby="escape-title">' +
+        '<p id="escape-title">완강기 사용법</p>' +
+        '<p class="small">캠퍼스 완강기 위치는 준비 중이에요. 먼저 사용법을 익혀 두세요.</p>' +
+        '<div class="card-carousel" data-folder="images/escape-guide" data-prefix="escape-" data-count="6" data-label="완강기 사용법"></div>' +
+        '<p class="small">완강기는 불이나 연기 때문에 계단으로 대피할 수 없을 때만 사용하세요.</p>' +
+        '<div class="confirm-btns"><button type="button" class="yes ok">확인</button></div>' +
+        '</div>',
+        function (box, close) {
+          setupCarousel(box.querySelector('.card-carousel'));
+          box.querySelector('.yes').onclick = close;
+          box.querySelector('.yes').focus();
+        }
+      );
+    });
+  }
+  
   // ---------- 3. 오늘의 불 아이콘 ----------
   function todaySpot() {
     const kst = new Date(Date.now() + 9 * 3600 * 1000).toISOString().slice(0, 10); // 한국 날짜
