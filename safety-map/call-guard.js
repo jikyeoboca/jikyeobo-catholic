@@ -7,8 +7,11 @@ document.addEventListener('click', function (e) {
   const back = document.createElement('div');
   back.className = 'confirm-backdrop';
   back.innerHTML =
-    '<div class="confirm-box" role="dialog" aria-modal="true" aria-labelledby="confirm-text">' +
-    '<p id="confirm-text">정말로 ' + number + '에 전화하시겠습니까?</p>' +
+    '<div class="confirm-box" role="dialog" aria-modal="true" aria-labelledby="call-title" aria-describedby="call-desc">' +
+    '<p id="call-title">⚠️ ' + number + ' 긴급전화 연결 안내</p>' +
+    '<p id="call-desc" class="call-warn">이 버튼은 실제 ' + number + ' 긴급전화로 연결됩니다.<br>' +
+    '화재, 응급환자, 구조 요청 등 실제 긴급상황에서만 이용해 주세요.</p>' +
+    '<p class="call-question">정말로 ' + number + '에 전화하시겠습니까?</p>' +
     '<div class="confirm-btns">' +
     '<button type="button" class="no">아니오</button>' +
     '<button type="button" class="yes">예</button>' +
