@@ -168,3 +168,11 @@ button{font-family:inherit}
 /* 정문 표시 */
 .gate{position:absolute;transform:translate(-50%,-50%);z-index:4;pointer-events:none}
 .gate span{display:block;background:#2b2f33;color:#fff;font-size:clamp(10px,1.6vw,13px);font-weight:800;padding:3px 9px;border-radius:999px;border:2px solid #fff;box-shadow:0 2px 4px rgba(0,0,0,.3);white-space:nowrap}
+
+/* 언어 선택 */
+.lang-switch{display:flex;justify-content:flex-end;gap:6px;margin-bottom:10px}
+.lang-switch button{font:inherit;font-size:.8rem;font-weight:700;padding:4px 12px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer}
+.lang-switch button[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--bg)}
+.hint:empty{display:none}
+.find-list{padding-left:1.3em;margin:0 0 10px}
+.find-list li{margin-bottom:6px}
