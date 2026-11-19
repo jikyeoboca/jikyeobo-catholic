@@ -243,7 +243,7 @@
 
   const NAMES = { ko: '한국어', en: 'English', zh: '中文' };
   // 언어 버튼 앞에 들어가는 원형 국기 그림 (없으면 글자만 보여요)
-  const FLAGS = { en: 'images/flag-en.png', zh: 'images/flag-zh.png' };
+  const FLAGS = { ko: 'images/flag-ko.png', en: 'images/flag-en.png', zh: 'images/flag-zh.png' };
   const KEY = 'jikyeoboca-lang';
 
   function saved() {

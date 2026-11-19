@@ -6,7 +6,8 @@
     if (!wrap || wrap.dataset.ready) return;
     wrap.dataset.ready = '1';
     const lang = window.getLang ? window.getLang() : 'ko';
-    const folder = wrap.dataset.folder + (lang === 'ko' ? '' : '-' + lang);
+    const baseFolder = wrap.dataset.folder;
+    const folder = baseFolder + (lang === 'ko' ? '' : '-' + lang);
     const prefix = wrap.dataset.prefix;
     const total = Number(wrap.dataset.count);
     const label = wrap.dataset.label || '카드뉴스';
@@ -26,6 +27,15 @@
         '<span class="count">1 / ' + total + '</span>' +
       '</div>' +
       '<div class="dots">' + dots + '</div>';
+
+    // 언어별 카드가 없거나 파일 이름이 틀리면 한국어 카드로 대신 보여줘요
+    if (folder !== baseFolder) {
+      wrap.querySelectorAll('.slide img').forEach(function (img, k) {
+        img.addEventListener('error', function () {
+          img.src = baseFolder + '/' + prefix + (k + 1) + '.' + ext;
+        }, { once: true });
+      });
+    }
 
     const track = wrap.querySelector('.slides');
     const dotBtns = wrap.querySelectorAll('.dot');
