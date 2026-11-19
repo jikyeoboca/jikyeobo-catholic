@@ -37,7 +37,7 @@
     return m < 1000 ? Math.round(m) + 'm' : (m / 1000).toFixed(1) + 'km';
   }
   function hasCoords(b) { return typeof b.lat === 'number' && typeof b.lng === 'number'; }
-  
+
   // ---------- 내 위치 점 ----------
   // 위도·경도 → 지도 그림 위 위치(%). 건물 13곳 좌표로 맞춘 값이에요.
   function toMap(lat, lng) {
@@ -137,7 +137,7 @@
         userPos = null;
         nearStatus.textContent = '';
         render();
-        showMe();        
+        showMe();
       };
     }
   }
@@ -202,7 +202,13 @@
       );
     });
   }
-  
+
+  // ---------- 소화기 안내 페이지로 이동 ----------
+  const fireBtn = document.getElementById('fire-btn');
+  if (fireBtn) {
+    fireBtn.addEventListener('click', function () { location.href = 'fire.html'; });
+  }
+
   // ---------- 3. 오늘의 불 아이콘 ----------
   function todaySpot() {
     const kst = new Date(Date.now() + 9 * 3600 * 1000).toISOString().slice(0, 10); // 한국 날짜
@@ -218,62 +224,11 @@
     fire.className = 'fire';
     fire.style.left = x + '%';
     fire.style.top = y + '%';
-    fire.setAttribute('aria-label', '소화기 사용법 보기');
+    fire.setAttribute('aria-label', '소화기 안내 페이지로 이동');
     fire.innerHTML = '<span aria-hidden="true">🔥</span>';
 
     fire.addEventListener('click', function () {
-      const total = 6;
-      let slides = '';
-      let dots = '';
-      for (let i = 1; i <= total; i++) {
-        slides += '<li class="slide"><img src="images/fire/fire-' + i + '.jpg" alt="소화기 사용법 ' + i + '단계" draggable="false"></li>';
-        dots += '<button type="button" class="dot" aria-label="' + i + '번째 카드"></button>';
-      }
-      openModal(
-        '<div class="confirm-box info-box" role="dialog" aria-modal="true" aria-labelledby="fire-title">' +
-        '<p id="fire-title">소화기 사용법</p>' +
-        '<p class="small">오늘의 불은 연습용 표시예요. 실제 소화기 위치가 아니에요.</p>' +
-        '<div class="carousel">' +
-          '<ul class="slides">' + slides + '</ul>' +
-          '<button type="button" class="nav prev" aria-label="이전 카드">‹</button>' +
-          '<button type="button" class="nav next" aria-label="다음 카드">›</button>' +
-          '<span class="count">1 / ' + total + '</span>' +
-        '</div>' +
-        '<div class="dots">' + dots + '</div>' +
-        '<p class="small">불이 천장까지 번졌거나 연기가 많으면 끄려 하지 말고 바로 대피한 뒤 119에 신고하세요.</p>' +
-        '<div class="confirm-btns"><button type="button" class="yes ok">확인</button></div>' +
-        '</div>',
-        function (box, close) {
-          const track = box.querySelector('.slides');
-          const dotBtns = box.querySelectorAll('.dot');
-          const count = box.querySelector('.count');
-          const prev = box.querySelector('.prev');
-          const next = box.querySelector('.next');
-          function current() { return Math.round(track.scrollLeft / track.clientWidth); }
-          function go(i) {
-            i = Math.max(0, Math.min(total - 1, i));
-            track.scrollTo({ left: i * track.clientWidth, behavior: 'smooth' });
-          }
-          function update() {
-            const i = current();
-            count.textContent = (i + 1) + ' / ' + total;
-            dotBtns.forEach(function (d, k) { d.setAttribute('aria-current', k === i ? 'true' : 'false'); });
-            prev.disabled = i === 0;
-            next.disabled = i === total - 1;
-          }
-          track.addEventListener('scroll', function () { window.requestAnimationFrame(update); });
-          prev.onclick = function () { go(current() - 1); };
-          next.onclick = function () { go(current() + 1); };
-          dotBtns.forEach(function (d, k) { d.onclick = function () { go(k); }; });
-          box.addEventListener('keydown', function (e) {
-            if (e.key === 'ArrowLeft') go(current() - 1);
-            if (e.key === 'ArrowRight') go(current() + 1);
-          });
-          update();
-          box.querySelector('.yes').onclick = close;
-          box.querySelector('.yes').focus();
-        }
-      );
+      location.href = 'fire.html';
     });
     map.appendChild(fire);
   }
