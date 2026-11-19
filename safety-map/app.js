@@ -37,7 +37,7 @@
     return m < 1000 ? Math.round(m) + 'm' : (m / 1000).toFixed(1) + 'km';
   }
   function hasCoords(b) { return typeof b.lat === 'number' && typeof b.lng === 'number'; }
-
+  
   // ---------- 내 위치 점 ----------
   // 위도·경도 → 지도 그림 위 위치(%). 건물 13곳 좌표로 맞춘 값이에요.
   function toMap(lat, lng) {
@@ -64,10 +64,12 @@
     return true;
   }
 
-  // 건물 이름 끝 괄호 속 약어로 핀 고르기: "다솔관(D)" → images/pins/D.png
+  // 건물 이름 끝 괄호 속 약어로 핀 고르기: AED "다솔관(D)" → images/aed-pins/D.png
+  //                                    완강기 "다솔관(D)" → images/escape-pins/D.png
   function pinSrc(b) {
     const m = b.name.match(/\(([A-Z]+)관?\)$/);
-    return m ? 'images/pins/' + m[1] + '.png' : 'images/pin.png';
+    const folder = b.type === 'escape' ? 'images/escape-pins/' : 'images/aed-pins/';
+    return m ? folder + m[1] + '.png' : 'images/pin.png';
   }
 
   // ---------- 핀과 목록 그리기 ----------
@@ -137,7 +139,7 @@
         userPos = null;
         nearStatus.textContent = '';
         render();
-        showMe();
+        showMe();        
       };
     }
   }
@@ -202,7 +204,7 @@
       );
     });
   }
-
+  
   // ---------- 소화기 안내 페이지로 이동 ----------
   const fireBtn = document.getElementById('fire-btn');
   if (fireBtn) {

@@ -1,5 +1,5 @@
 // 카드뉴스를 한 장씩 옆으로 넘기는 기능
-// 사용법: <div class="card-carousel" data-folder="이미지 폴더" data-prefix="파일 이름 앞부분" data-count="장 수" data-label="제목"></div>
+// 사용법: <div class="card-carousel" data-folder="이미지 폴더" data-prefix="파일 이름 앞부분" data-count="장 수" data-label="제목" data-ext="확장자(기본 png)"></div>
 (function () {
   function setupCarousel(wrap) {
     if (!wrap || wrap.dataset.ready) return;
@@ -8,11 +8,12 @@
     const prefix = wrap.dataset.prefix;
     const total = Number(wrap.dataset.count);
     const label = wrap.dataset.label || '카드뉴스';
+    const ext = wrap.dataset.ext || 'png';
 
     let slides = '';
     let dots = '';
     for (let i = 1; i <= total; i++) {
-      slides += '<li class="slide"><img src="' + folder + '/' + prefix + i + '.jpg" alt="' + label + ' ' + i + '단계" draggable="false"></li>';
+      slides += '<li class="slide"><img src="' + folder + '/' + prefix + i + '.' + ext + '" alt="' + label + ' ' + i + '단계" draggable="false"></li>';
       dots += '<button type="button" class="dot" aria-label="' + i + '번째 카드"></button>';
     }
     wrap.innerHTML =
