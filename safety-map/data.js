@@ -35,7 +35,7 @@ const AED_DATA = {
         detail: "1층 보건실 앞",
         detailEn: "1F, in front of the health center",
         detailZh: "1层 保健室前" },
-  11: { type: "aed", name: "학생미래인재관(B)", en: "Sophie Barat Hall(B)", floors: ["1층"], x: 44.0, y: 46.5, lat: 37.48652, lng: 126.80136, photos: ["B_2.jpg"],
+  11: { type: "aed", name: "학생미래인재관(B)", en: "Sophie Barat Hall(B)", floors: ["1층"], x: 44.0, y: 46.5, lat: 37.48652, lng: 126.80136, photos: ["B_1.jpg"],
         detail: "1층 CUK 드림라운지 앞",
         detailEn: "1F, in front of the CUK Dream Lounge",
         detailZh: "1层 CUK Dream Lounge前" },

@@ -65,10 +65,12 @@
     return true;
   }
 
-  // 건물 이름 끝 괄호 속 약어로 핀 고르기: "다솔관(D)" → images/pins/D.png
+  // 건물 이름 끝 괄호 속 약어로 핀 고르기: AED "다솔관(D)" → images/aed-pins/D.png
+  //                                    완강기 "다솔관(D)" → images/escape-pins/D.png
   function pinSrc(b) {
     const m = b.name.match(/\(([A-Z]+)관?\)$/);
-    return m ? 'images/pins/' + m[1] + '.png' : 'images/pin.png';
+    const folder = b.type === 'escape' ? 'images/escape-pins/' : 'images/aed-pins/';
+    return m ? folder + m[1] + '.png' : 'images/pin.png';
   }
 
   // ---------- 핀과 목록 그리기 ----------

@@ -171,8 +171,9 @@ button{font-family:inherit}
 
 /* 언어 선택 */
 .lang-switch{display:flex;justify-content:flex-end;gap:6px;margin-bottom:10px}
-.lang-switch button{font:inherit;font-size:.8rem;font-weight:700;padding:4px 12px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer}
+.lang-switch button{display:inline-flex;align-items:center;gap:6px;font:inherit;font-size:.8rem;font-weight:700;padding:4px 12px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer}
 .lang-switch button[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--bg)}
+.lang-switch .flag{width:18px;height:18px;border-radius:50%;object-fit:cover;box-shadow:0 0 0 1px var(--line);flex-shrink:0}
 .hint:empty{display:none}
 .find-list{padding-left:1.3em;margin:0 0 10px}
 .find-list li{margin-bottom:6px}

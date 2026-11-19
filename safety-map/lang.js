@@ -9,7 +9,6 @@
       call119: '119에 전화하기',
       brandSlogan: '우리 학교, 우리가 지켜보카!',
       brandDesc: '가톨릭대학교 성심교정 교내 안전맵',
-      feedback: '의견 보내기',
       tip: '지도의 <strong>빨간 핀</strong>을 누르면 그 건물의 소방 시설 위치와 사용법을 볼 수 있어요.',
       emergency: '응급 상황이면 먼저 119에 전화하세요',
       filterAll: '전체보기',
@@ -62,8 +61,15 @@
       aedTitleSuffix: 'AED(자동심장충격기) 정보 | 지켜보카',
       aedLocH: 'AED(자동심장충격기) 위치',
       aedStepsH: 'AED 사용 순서',
-      aedGuideHint: '🔍 이미지를 누르면 새 창에서 크게 볼 수 있어요',
       aedImgNote: '',
+      reportQ: '잘못된 정보나 바뀐 시설 위치를 발견하셨나요?',
+      reportBtn: '오류·변경사항 제보하기 →',
+      footerTitle: '운영 및 정보 안내',
+      footer1: '본 지도는 교내 소방시설의 위치 정보를 제공하기 위해 제작되었어요.',
+      footer2: '표시된 위치 및 정보는 실제 현장 상황과 차이가 있을 수 있어요.',
+      footer3: '소방시설 주변에는 물건을 적치하지 말고, 비상시 누구나 사용할 수 있도록 공간을 확보해 주세요.',
+      footer4: '화재 및 긴급 상황 발생 시 즉시 119에 신고해주세요.',
+      footerEnd: '우리의 안전은 작은 관심에서 시작됩니다.',
       photoCap: '사진을 누르면 새 창에서 크게 볼 수 있어요',
       notFoundH: '건물 정보를 찾을 수 없어요',
       notFoundP: '지도로 돌아가 핀을 다시 눌러 주세요.',
@@ -81,7 +87,6 @@
       call119: 'Call 119',
       brandSlogan: 'Our school, let\'s watch over it together!',
       brandDesc: 'The Catholic University of Korea, Songsim Campus Safety Map',
-      feedback: 'Send feedback',
       tip: 'Tap a <strong>red pin</strong> on the map to see where the fire safety equipment is in that building and how to use it.',
       emergency: 'In an emergency, call 119 first (Korea\'s emergency number)',
       filterAll: 'View all',
@@ -134,8 +139,15 @@
       aedTitleSuffix: 'AED (Defibrillator) Info | Jikyeoboca',
       aedLocH: 'AED (Defibrillator) location',
       aedStepsH: 'How to use an AED',
-      aedGuideHint: '🔍 Tap the image to view it larger in a new window',
-      aedImgNote: 'The guide image is in Korean. The written steps below are translated.',
+      aedImgNote: 'The guide cards are in Korean. The written steps below are translated.',
+      reportQ: 'Found wrong information or a facility that has moved?',
+      reportBtn: 'Report an error or change →',
+      footerTitle: 'About this map',
+      footer1: 'This map was made to show where fire safety equipment is located on campus.',
+      footer2: 'Locations and details shown may differ from the actual site.',
+      footer3: 'Please keep the area around safety equipment clear so anyone can use it in an emergency.',
+      footer4: 'In case of fire or any emergency, call 119 immediately.',
+      footerEnd: 'Our safety begins with a little attention.',
       photoCap: 'Tap the photo to view it larger in a new window',
       notFoundH: 'Building information not found',
       notFoundP: 'Go back to the map and tap the pin again.',
@@ -153,7 +165,6 @@
       call119: '拨打119',
       brandSlogan: '我们的学校，我们来守护！',
       brandDesc: '韩国天主教大学圣心校区校内安全地图',
-      feedback: '提交意见',
       tip: '点击地图上的<strong>红色图钉</strong>，即可查看该建筑的消防设施位置和使用方法。',
       emergency: '紧急情况请先拨打119（韩国急救电话）',
       filterAll: '查看全部',
@@ -206,8 +217,15 @@
       aedTitleSuffix: 'AED（自动体外除颤器）信息 | 지켜보카',
       aedLocH: 'AED（自动体外除颤器）位置',
       aedStepsH: 'AED使用步骤',
-      aedGuideHint: '🔍 点击图片可在新窗口中查看大图',
-      aedImgNote: '说明图片为韩文。下方的文字步骤已翻译。',
+      aedImgNote: '说明卡片为韩文。下方的文字步骤已翻译。',
+      reportQ: '发现错误信息或设施位置有变化吗？',
+      reportBtn: '报告错误或变更 →',
+      footerTitle: '运营及信息说明',
+      footer1: '本地图旨在提供校内消防设施的位置信息。',
+      footer2: '所显示的位置和信息可能与现场实际情况有所不同。',
+      footer3: '请勿在消防设施周围堆放物品，确保紧急情况下任何人都能使用。',
+      footer4: '发生火灾或紧急情况时，请立即拨打119。',
+      footerEnd: '我们的安全始于一点点关心。',
       photoCap: '点击照片可在新窗口中查看大图',
       notFoundH: '找不到建筑信息',
       notFoundP: '请返回地图，重新点击图钉。',
@@ -221,6 +239,8 @@
   };
 
   const NAMES = { ko: '한국어', en: 'English', zh: '中文' };
+  // 언어 버튼 앞에 들어가는 원형 국기 그림 (없으면 글자만 보여요)
+  const FLAGS = { en: 'images/flag-en.png', zh: 'images/flag-zh.png' };
   const KEY = 'jikyeoboca-lang';
 
   function saved() {
@@ -277,7 +297,14 @@
       const b = document.createElement('button');
       b.type = 'button';
       b.dataset.lang = code;
-      b.textContent = NAMES[code];
+      if (FLAGS[code]) {
+        const img = document.createElement('img');
+        img.className = 'flag';
+        img.src = FLAGS[code];
+        img.alt = '';
+        b.appendChild(img);
+      }
+      b.appendChild(document.createTextNode(NAMES[code]));
       b.addEventListener('click', function () { window.setLang(code); });
       box.appendChild(b);
     });
