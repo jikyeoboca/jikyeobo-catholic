@@ -5,6 +5,7 @@
   const nearStatus = document.getElementById('near-status');
   let filter = 'all';
   let userPos = null;
+  let fireEl = null;
   const canHover = window.matchMedia('(hover: hover)').matches;
 
   // ---------- 공통 팝업 ----------
@@ -37,7 +38,7 @@
     return m < 1000 ? Math.round(m) + 'm' : (m / 1000).toFixed(1) + 'km';
   }
   function hasCoords(b) { return typeof b.lat === 'number' && typeof b.lng === 'number'; }
-  
+
   // ---------- 내 위치 점 ----------
   // 위도·경도 → 지도 그림 위 위치(%). 건물 13곳 좌표로 맞춘 값이에요.
   function toMap(lat, lng) {
@@ -56,7 +57,7 @@
       dot.id = 'me-dot';
       dot.className = 'me-dot';
       dot.setAttribute('role', 'img');
-      dot.setAttribute('aria-label', '내 위치');
+      dot.setAttribute('aria-label', 'My location');
       map.appendChild(dot);
     }
     dot.style.left = p.x + '%';
@@ -64,12 +65,10 @@
     return true;
   }
 
-  // 건물 이름 끝 괄호 속 약어로 핀 고르기: AED "다솔관(D)" → images/aed-pins/D.png
-  //                                    완강기 "다솔관(D)" → images/escape-pins/D.png
+  // 건물 이름 끝 괄호 속 약어로 핀 고르기: "다솔관(D)" → images/pins/D.png
   function pinSrc(b) {
     const m = b.name.match(/\(([A-Z]+)관?\)$/);
-    const folder = b.type === 'escape' ? 'images/escape-pins/' : 'images/aed-pins/';
-    return m ? folder + m[1] + '.png' : 'images/pin.png';
+    return m ? 'images/pins/' + m[1] + '.png' : 'images/pin.png';
   }
 
   // ---------- 핀과 목록 그리기 ----------
@@ -89,22 +88,26 @@
     }
 
     rows.forEach(function (b) {
+      const name = bName(b);
+      const floors = bFloors(b).join(', ');
+      const detail = bDetail(b);
+
       const pin = document.createElement('a');
       pin.className = 'pin';
       pin.href = 'aed.html?b=' + b.id;
       pin.style.left = b.x + '%';
       pin.style.top = b.y + '%';
-      pin.setAttribute('aria-label', b.name + ' AED 정보');
+      pin.setAttribute('aria-label', name + ' ' + t('aedInfo'));
       pin.innerHTML =
         '<img src="' + pinSrc(b) + '" alt="">' +
-        '<span class="tip"><strong>' + b.name + '</strong>' +
-        'AED ' + b.floors.join(', ') + '<br>' + b.detail + '</span>';
+        '<span class="tip"><strong>' + name + '</strong>' +
+        'AED ' + floors + '<br>' + detail + '</span>';
       map.appendChild(pin);
 
       const row = document.createElement('a');
       row.href = 'aed.html?b=' + b.id;
       const dist = (userPos && b.dist != null) ? '<em>' + formatDist(b.dist) + '</em>' : '';
-      row.innerHTML = '<b>' + b.name + '</b><span>' + b.floors.join(', ') + dist + '</span>';
+      row.innerHTML = '<b>' + name + '</b><span>' + floors + dist + '</span>';
       list.appendChild(row);
 
       // PC: 목록에 마우스를 올리거나 키보드로 고르면 해당 핀이 움직여요
@@ -116,7 +119,7 @@
       row.addEventListener('blur', function () { pin.classList.remove('active'); });
     });
 
-    if (!rows.length) list.innerHTML = '<p class="empty">표시할 시설이 없어요.</p>';
+    if (!rows.length) list.innerHTML = '<p class="empty">' + t('noFacility') + '</p>';
   }
 
   // ---------- 1. 시설 종류 필터 ----------
@@ -131,50 +134,54 @@
   });
 
   // ---------- 2. 가까운 순 정렬 ----------
-  function setStatus(text, withReset) {
-    nearStatus.innerHTML = text +
-      (withReset ? ' <button type="button" class="link-btn" id="near-reset">원래 순서로</button>' : '');
-    if (withReset) {
+  let statusKey = null;
+  let statusReset = false;
+
+  function drawStatus() {
+    if (!statusKey) { nearStatus.textContent = ''; return; }
+    nearStatus.innerHTML = t(statusKey) +
+      (statusReset ? ' <button type="button" class="link-btn" id="near-reset">' + t('nearReset') + '</button>' : '');
+    if (statusReset) {
       document.getElementById('near-reset').onclick = function () {
         userPos = null;
-        nearStatus.textContent = '';
+        statusKey = null;
+        statusReset = false;
+        drawStatus();
         render();
-        showMe();        
+        showMe();
       };
     }
+  }
+  function setStatus(key, withReset) {
+    statusKey = key;
+    statusReset = !!withReset;
+    drawStatus();
   }
 
   function locate() {
     if (!('geolocation' in navigator)) {
-      setStatus('이 브라우저에서는 위치 기능을 쓸 수 없어요.');
+      setStatus('locNoSupport');
       return;
     }
-    setStatus('내 위치를 찾는 중이에요…');
+    setStatus('locating');
     navigator.geolocation.getCurrentPosition(function (pos) {
       userPos = { lat: pos.coords.latitude, lng: pos.coords.longitude };
       render();
       const onMap = showMe();
-      setStatus('내 위치에서 가까운 순으로 정렬했어요. ' +
-        (onMap ? '지도의 파란 점이 내 위치예요. 실내에서는 수십 m 오차가 날 수 있어요.'
-               : '지금은 캠퍼스 밖이라 지도에는 내 위치를 표시하지 않았어요.'), true);
+      setStatus(onMap ? 'nearDoneOn' : 'nearDoneOff', true);
     }, function (err) {
-      if (err.code === 1) {
-        setStatus('위치 권한이 꺼져 있어요. 브라우저 설정에서 이 사이트의 위치 권한을 허용한 뒤 다시 눌러 주세요.');
-      } else {
-        setStatus('위치를 찾지 못했어요. 잠시 후 다시 눌러 주세요.');
-      }
+      setStatus(err.code === 1 ? 'locDenied' : 'locFail');
     }, { enableHighAccuracy: true, timeout: 10000, maximumAge: 60000 });
   }
 
   nearBtn.addEventListener('click', function () {
     openModal(
       '<div class="confirm-box" role="dialog" aria-modal="true" aria-labelledby="loc-title">' +
-      '<p id="loc-title">내 위치를 사용할까요?</p>' +
-      '<p class="small">가까운 안전시설을 찾는 데만 쓰고, 어디에도 저장하지 않아요. ' +
-      '허용을 누르면 브라우저에서 한 번 더 위치 권한을 물어볼 수 있어요.</p>' +
+      '<p id="loc-title">' + t('nearTitle') + '</p>' +
+      '<p class="small">' + t('nearDesc') + '</p>' +
       '<div class="confirm-btns">' +
-      '<button type="button" class="no">취소</button>' +
-      '<button type="button" class="yes ok">허용</button>' +
+      '<button type="button" class="no">' + t('cancel') + '</button>' +
+      '<button type="button" class="yes ok">' + t('allow') + '</button>' +
       '</div></div>',
       function (box, close) {
         box.querySelector('.no').onclick = close;
@@ -188,13 +195,15 @@
   const escapeBtn = document.getElementById('escape-btn');
   if (escapeBtn) {
     escapeBtn.addEventListener('click', function () {
+      const note = t('cardNote');
       openModal(
         '<div class="confirm-box info-box" role="dialog" aria-modal="true" aria-labelledby="escape-title">' +
-        '<p id="escape-title">완강기 사용법</p>' +
-        '<p class="small">캠퍼스 완강기 위치는 준비 중이에요. 먼저 사용법을 익혀 두세요.</p>' +
-        '<div class="card-carousel" data-folder="images/escape-guide" data-prefix="escape-" data-count="6" data-label="완강기 사용법"></div>' +
-        '<p class="small">완강기는 불이나 연기 때문에 계단으로 대피할 수 없을 때만 사용하세요.</p>' +
-        '<div class="confirm-btns"><button type="button" class="yes ok">확인</button></div>' +
+        '<p id="escape-title">' + t('escapeTitle') + '</p>' +
+        '<p class="small">' + t('escapeP1') + '</p>' +
+        '<div class="card-carousel" data-folder="images/escape-guide" data-prefix="escape-" data-count="6" data-label="' + t('escapeTitle') + '"></div>' +
+        (note ? '<p class="small">' + note + '</p>' : '') +
+        '<p class="small">' + t('escapeP2') + '</p>' +
+        '<div class="confirm-btns"><button type="button" class="yes ok">' + t('ok') + '</button></div>' +
         '</div>',
         function (box, close) {
           setupCarousel(box.querySelector('.card-carousel'));
@@ -204,7 +213,7 @@
       );
     });
   }
-  
+
   // ---------- 소화기 안내 페이지로 이동 ----------
   const fireBtn = document.getElementById('fire-btn');
   if (fireBtn) {
@@ -226,14 +235,22 @@
     fire.className = 'fire';
     fire.style.left = x + '%';
     fire.style.top = y + '%';
-    fire.setAttribute('aria-label', '소화기 안내 페이지로 이동');
+    fire.setAttribute('aria-label', t('fireAria'));
     fire.innerHTML = '<span aria-hidden="true">🔥</span>';
-
     fire.addEventListener('click', function () {
       location.href = 'fire.html';
     });
     map.appendChild(fire);
+    fireEl = fire;
   }
+
+  // ---------- 언어를 바꾸면 핀·목록·안내 문구도 다시 그려요 ----------
+  document.addEventListener('langchange', function () {
+    render();
+    showMe();
+    drawStatus();
+    if (fireEl) fireEl.setAttribute('aria-label', t('fireAria'));
+  });
 
   render();
   placeFire();
