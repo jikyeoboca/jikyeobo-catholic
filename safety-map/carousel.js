@@ -1,10 +1,12 @@
 // 카드뉴스를 한 장씩 옆으로 넘기는 기능
+// 언어별 카드는 같은 이름의 폴더 뒤에 -en, -zh를 붙인 폴더에 넣어요. (예: images/fire-guide-en)
 // 사용법: <div class="card-carousel" data-folder="이미지 폴더" data-prefix="파일 이름 앞부분" data-count="장 수" data-label="제목" data-ext="확장자(기본 png)"></div>
 (function () {
   function setupCarousel(wrap) {
     if (!wrap || wrap.dataset.ready) return;
     wrap.dataset.ready = '1';
-    const folder = wrap.dataset.folder;
+    const lang = window.getLang ? window.getLang() : 'ko';
+    const folder = wrap.dataset.folder + (lang === 'ko' ? '' : '-' + lang);
     const prefix = wrap.dataset.prefix;
     const total = Number(wrap.dataset.count);
     const label = wrap.dataset.label || '카드뉴스';
@@ -57,4 +59,12 @@
   // 팝업처럼 나중에 생기는 카드뉴스에서도 쓸 수 있게 내보내요
   window.setupCarousel = setupCarousel;
   document.querySelectorAll('.card-carousel').forEach(setupCarousel);
+
+  // 언어를 바꾸면 그 언어의 카드로 다시 그려요
+  document.addEventListener('langchange', function () {
+    document.querySelectorAll('.card-carousel[data-ready]').forEach(function (wrap) {
+      delete wrap.dataset.ready;
+      setupCarousel(wrap);
+    });
+  });
 })();

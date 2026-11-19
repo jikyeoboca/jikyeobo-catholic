@@ -5,6 +5,7 @@
   const STRINGS = {
     ko: {
       siteTitle: '지켜보카 | 가톨릭대학교 성심교정 교내 안전맵',
+      brandTitle: '지켜보카',
       back: '← 캠퍼스 소방시설 지도로 돌아가기',
       call119: '119에 전화하기',
       brandSlogan: '우리 학교, 우리가 지켜보카!',
@@ -83,6 +84,7 @@
 
     en: {
       siteTitle: 'Jikyeoboca | CUK Songsim Campus Safety Map',
+      brandTitle: 'Jikyeoboca',
       back: '← Back to the campus fire safety map',
       call119: 'Call 119',
       brandSlogan: 'Our school, let\'s watch over it together!',
@@ -107,7 +109,7 @@
       find4: 'Follow the <b>red extinguisher signs</b> on the walls.',
       fireHint: 'The 🔥 icon on the map is for practice only. It does not show a real extinguisher location.',
       fireCardsH: 'How-to cards',
-      cardNote: 'The card images are in Korean. The written steps below are translated.',
+      cardNote: '',
       stepsH: 'How to use a fire extinguisher',
       step1: '<b>Pull the safety pin.</b> Twist and pull out the pin at the top of the handle.',
       step2: '<b>Aim the hose at the fire.</b> Aim at the base of the flames, not the top.',
@@ -139,7 +141,7 @@
       aedTitleSuffix: 'AED (Defibrillator) Info | Jikyeoboca',
       aedLocH: 'AED (Defibrillator) location',
       aedStepsH: 'How to use an AED',
-      aedImgNote: 'The guide cards are in Korean. The written steps below are translated.',
+      aedImgNote: '',
       reportQ: 'Found wrong information or a facility that has moved?',
       reportBtn: 'Report an error or change →',
       footerTitle: 'About this map',
@@ -161,6 +163,7 @@
 
     zh: {
       siteTitle: 'Jikyeoboca | 韩国天主教大学圣心校区校内安全地图',
+      brandTitle: 'Jikyeoboca',
       back: '← 返回校园消防设施地图',
       call119: '拨打119',
       brandSlogan: '我们的学校，我们来守护！',
@@ -185,7 +188,7 @@
       find4: '请沿着墙上的<b>红色灭火器标志</b>寻找。',
       fireHint: '地图上的🔥图标仅用于练习，并不是真实的灭火器位置。',
       fireCardsH: '灭火器使用方法卡片',
-      cardNote: '卡片图片为韩文。下方的文字步骤已翻译。',
+      cardNote: '',
       stepsH: '灭火器使用步骤',
       step1: '<b>拔掉安全销。</b>转动并拔出手柄上方的销子。',
       step2: '<b>将喷管对准火源。</b>瞄准火焰根部，而不是火焰上方。',
@@ -214,10 +217,10 @@
       escapeP1: '校园内缓降器的位置正在准备中。请先熟悉使用方法。',
       escapeP2: '只有在火或烟导致无法走楼梯撤离时，才使用缓降器。',
       fireAria: '前往灭火器指南页面',
-      aedTitleSuffix: 'AED（自动体外除颤器）信息 | 지켜보카',
+      aedTitleSuffix: 'AED（自动体外除颤器）信息 | Jikyeoboca',
       aedLocH: 'AED（自动体外除颤器）位置',
       aedStepsH: 'AED使用步骤',
-      aedImgNote: '说明卡片为韩文。下方的文字步骤已翻译。',
+      aedImgNote: '',
       reportQ: '发现错误信息或设施位置有变化吗？',
       reportBtn: '报告错误或变更 →',
       footerTitle: '运营及信息说明',
