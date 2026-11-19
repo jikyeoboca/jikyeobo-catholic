@@ -3,58 +3,55 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>소화기 안내 | 지켜보카</title>
+<title data-i18n="fireDocTitle">소화기 안내 | 지켜보카</title>
 <link rel="stylesheet" href="style.css">
 <link rel="icon" type="image/png" href="images/browser_icon.png">
 </head>
 <body>
 <main class="wrap">
-  <a class="back" href="index.html">← 캠퍼스 소방시설 지도로 돌아가기</a>
-  <h1>🧯 소화기 안내</h1>
-  <a class="call" href="tel:119">119에 전화하기</a>
+  <a class="back" href="index.html" data-i18n="back">← 캠퍼스 소방시설 지도로 돌아가기</a>
+  <h1 data-i18n="fireTitle">🧯 소화기 안내</h1>
+  <a class="call" href="tel:119" data-i18n="call119">119에 전화하기</a>
 
   <section class="box">
-    <h2>소화기는 어디에 있나요?</h2>
-    <p>캠퍼스에는 소화기가 아주 많아서 지도에 하나씩 표시하지 않았어요. 대신 건물 안에서 찾는 요령을 알려 드려요.</p>
+    <h2 data-i18n="fireWhereH">소화기는 어디에 있나요?</h2>
+    <p data-i18n="fireWhereP">캠퍼스에는 소화기가 아주 많아서 지도에 하나씩 표시하지 않았어요. 대신 건물 안에서 찾는 요령을 알려 드려요.</p>
     <ul class="find-list">
-      <li><b>강의실</b>마다 최소 1개가 있어요. 출입문 근처 벽을 먼저 보세요.</li>
-      <li><b>복도</b>의 소화전함 안이나 그 옆에 있어요.</li>
-      <li><b>계단 입구</b>나 층 중앙 벽면에서도 찾을 수 있어요.</li>
-      <li>벽에 붙은 <b>빨간 소화기 표지</b>를 따라가 보세요.</li>
+      <li data-i18n-html="find1"><b>강의실</b>마다 최소 1개가 있어요. 출입문 근처 벽을 먼저 보세요.</li>
+      <li data-i18n-html="find2"><b>복도</b>의 소화전함 안이나 그 옆에 있어요.</li>
+      <li data-i18n-html="find3"><b>계단 입구</b>나 층 중앙 벽면에서도 찾을 수 있어요.</li>
+      <li data-i18n-html="find4">벽에 붙은 <b>빨간 소화기 표지</b>를 따라가 보세요.</li>
     </ul>
-    <p class="hint">지도의 🔥 아이콘은 연습용 표시이고, 실제 소화기 위치가 아니에요.</p>
+    <p class="hint" data-i18n="fireHint">지도의 🔥 아이콘은 연습용 표시이고, 실제 소화기 위치가 아니에요.</p>
   </section>
 
   <section class="box">
-    <h2>소화기 사용법 카드</h2>
-    <div class="card-carousel" data-folder="images/fire-guide" data-prefix="fire" data-count="6" data-label="소화기 사용법"></div>
+    <h2 data-i18n="fireCardsH">소화기 사용법 카드</h2>
+    <div class="card-carousel" data-folder="images/fire" data-prefix="fire-" data-count="6" data-label="소화기 사용법"></div>
+    <p class="hint" data-i18n="cardNote"></p>
   </section>
 
   <section class="box">
-    <h2>소화기 사용 순서</h2>
+    <h2 data-i18n="stepsH">소화기 사용 순서</h2>
     <ol>
-      <li><b>안전핀을 뽑으세요.</b> 손잡이 위쪽의 핀을 돌려 당겨 뽑아요.</li>
-      <li><b>호스를 불 쪽으로 겨누세요.</b> 불길 위가 아니라 불이 타는 아래쪽 밑동을 향해요.</li>
-      <li><b>손잡이를 힘껏 쥐세요.</b></li>
-      <li><b>빗자루로 쓸듯이 뿌리세요.</b> 좌우로 쓸면서 불을 덮어 주세요.</li>
+      <li data-i18n-html="step1"><b>안전핀을 뽑으세요.</b> 손잡이 위쪽의 핀을 돌려 당겨 뽑아요.</li>
+      <li data-i18n-html="step2"><b>호스를 불 쪽으로 겨누세요.</b> 불길 위가 아니라 불이 타는 아래쪽 밑동을 향해요.</li>
+      <li data-i18n-html="step3"><b>손잡이를 힘껏 쥐세요.</b></li>
+      <li data-i18n-html="step4"><b>빗자루로 쓸듯이 뿌리세요.</b> 좌우로 쓸면서 불을 덮어 주세요.</li>
     </ol>
   </section>
 
   <section class="box">
-    <h2>꼭 알아두세요</h2>
+    <h2 data-i18n="knowH">꼭 알아두세요</h2>
     <ul class="find-list">
-      <li>사용 전에 <b>압력 게이지 바늘이 초록색 구간</b>에 있는지 확인하세요.</li>
-      <li>불은 <b>출구를 등지지 않는 위치</b>에서 끄세요. 불길이 커지면 바로 나갈 수 있어야 해요.</li>
-      <li>불이 천장까지 번졌거나 연기가 많으면 <b>끄려 하지 말고 바로 대피</b>한 뒤 119에 신고하세요.</li>
-      <li>소화기는 불이 막 시작된 때에만 효과가 있어요. 무리하지 마세요.</li>
+      <li data-i18n-html="know1">사용 전에 <b>압력 게이지 바늘이 초록색 구간</b>에 있는지 확인하세요.</li>
+      <li data-i18n-html="know2">불은 <b>출구를 등지지 않는 위치</b>에서 끄세요. 불길이 커지면 바로 나갈 수 있어야 해요.</li>
+      <li data-i18n-html="know3">불이 천장까지 번졌거나 연기가 많으면 <b>끄려 하지 말고 바로 대피</b>한 뒤 119에 신고하세요.</li>
+      <li data-i18n-html="know4">소화기는 불이 막 시작된 때에만 효과가 있어요. 무리하지 마세요.</li>
     </ul>
   </section>
-
-  <footer class="site-footer">
-    <!-- ▼ 하단 푸터 안내 문구를 여기에 넣으세요 -->
-
-  </footer>
 </main>
+<script src="lang.js"></script>
 <script src="call-guard.js"></script>
 <script src="carousel.js"></script>
 </body>
