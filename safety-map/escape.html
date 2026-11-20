@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title data-i18n="escapeDocSuffix">완강기 정보 | 지켜보카</title>
+<link rel="stylesheet" href="style.css">
+<link rel="icon" type="image/png" href="images/browser_icon.png">
+</head>
+<body>
+<main class="wrap">
+  <a class="back" href="index.html" data-i18n="back">← 캠퍼스 소방시설 지도로 돌아가기</a>
+  <h1 id="title">완강기</h1>
+  <a class="call" href="tel:119" data-i18n="call119">119에 전화하기</a>
+
+  <section class="box">
+    <h2 data-i18n="escapeLocH">완강기 위치</h2>
+    <div class="floors" id="floors"></div>
+    <p id="detail"></p>
+    <p class="hint" data-i18n="escapeApprox">정확한 도면이 없어 대략적인 위치예요. 현장에서 벽이나 창문 근처의 완강기 표지를 꼭 확인하세요.</p>
+  </section>
+
+  <section class="box">
+    <h2 data-i18n="escapeStepsH">완강기 사용 순서</h2>
+    <div class="card-carousel" data-folder="images/escape-guide" data-prefix="escape-" data-count="6" data-label="완강기 사용법"></div>
+    <p class="hint" data-i18n="cardNote"></p>
+    <ol>
+      <li data-i18n-html="esc1"><b>보관함에서 완강기를 꺼내세요.</b></li>
+      <li data-i18n-html="esc2"><b>지지대 고리에 완강기 고리를 걸고</b> 잠금 나사를 돌려 단단히 고정하세요.</li>
+      <li data-i18n-html="esc3"><b>줄이 감긴 릴을 창밖으로 던지세요.</b> 아래에 사람이 없는지 먼저 확인해요.</li>
+      <li data-i18n-html="esc4"><b>벨트를 머리부터 써서 겨드랑이 밑에 걸고</b> 고정링을 몸 쪽으로 당겨 조이세요.</li>
+      <li data-i18n-html="esc5"><b>지지대를 창밖으로 밀고</b> 벽을 마주 본 채 두 손으로 벽을 짚으며 천천히 내려가세요.</li>
+    </ol>
+    <p class="hint" data-i18n="escapeP2">완강기는 불이나 연기 때문에 계단으로 대피할 수 없을 때만 사용하세요.</p>
+  </section>
+
+  <section class="report-box">
+    <p data-i18n="reportQ">잘못된 정보나 바뀐 시설 위치를 발견하셨나요?</p>
+    <a class="report" href="https://form.naver.com/response/8UtEdGH7hLo" target="_blank" rel="noopener" data-i18n="reportBtn">오류·변경사항 제보하기 →</a>
+  </section>
+
+  <footer class="site-footer">
+    <!-- ▼ 하단 푸터 안내 문구를 여기에 넣으세요 (문구는 lang.js의 footer... 항목도 같이 고쳐 주세요) -->
+    <p data-i18n="footerTitle">운영 및 정보 안내</p>
+    <p data-i18n="footer1">본 지도는 교내 소방시설의 위치 정보를 제공하기 위해 제작되었어요.</p>
+    <p data-i18n="footer2">표시된 위치 및 정보는 실제 현장 상황과 차이가 있을 수 있어요.</p>
+    <p data-i18n="footer3">소방시설 주변에는 물건을 적치하지 말고, 비상시 누구나 사용할 수 있도록 공간을 확보해 주세요.</p>
+    <p data-i18n="footer4">화재 및 긴급 상황 발생 시 즉시 119에 신고해주세요.</p>
+    <br>
+    <p data-i18n="footerEnd">우리의 안전은 작은 관심에서 시작됩니다.</p>
+  </footer>
+</main>
+<script src="data.js"></script>
+<script src="lang.js"></script>
+<script src="call-guard.js"></script>
+<script src="carousel.js"></script>
+<script>
+  const id = new URLSearchParams(location.search).get('b');
+  const b = ESCAPE_DATA[id];
+
+  function renderBuilding() {
+    const titleEl = document.getElementById('title');
+    const floorsEl = document.getElementById('floors');
+    const detailEl = document.getElementById('detail');
+
+    if (!b) {
+      titleEl.textContent = t('notFoundH');
+      floorsEl.textContent = '';
+      detailEl.textContent = t('notFoundP');
+      return;
+    }
+
+    const name = bName(b);
+    document.title = name + ' ' + t('escapeDocSuffix');
+    titleEl.textContent = name + ' ' + t('escapeShort');
+    floorsEl.textContent = bFloors(b).join(', ');
+    detailEl.textContent = bDetail(b);
+  }
+
+  renderBuilding();
+  document.addEventListener('langchange', renderBuilding);
+</script>
+</body>
+</html>

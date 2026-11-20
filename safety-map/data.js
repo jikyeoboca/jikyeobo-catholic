@@ -1,5 +1,5 @@
 // 소방시설 정보
-// type: "aed"(AED) / "escape"(완강기, 나중에 추가)
+// type: "aed"(AED) / "escape"(완강기)
 // name: 한국어 이름 / en: 영어 이름(영어·중국어 화면에서 사용, 끝의 (알파벳) 약어는 꼭 유지)
 // detail: 한국어 / detailEn: 영어 / detailZh: 중국어
 // x, y: 지도 그림에서 핀 끝이 가리키는 위치(가로·세로 %)
@@ -59,6 +59,20 @@ const AED_DATA = {
         detail: "2층 로비 출입구 옆",
         detailEn: "2F, next to the lobby entrance",
         detailZh: "2层 大厅入口旁" }
+};
+
+// 완강기 정보 (적는 방법은 위 AED_DATA와 같아요)
+// 정확한 도면이 없어서 대략적인 위치예요. 완강기가 없는 건물은 넣지 않아요.
+// 숫자(4, 5)는 위 AED_DATA의 같은 건물 번호와 맞췄어요. 상세 페이지 주소: escape.html?b=번호
+const ESCAPE_DATA = {
+  4: { type: "escape", name: "스테파노기숙사(K)", en: "Dormitory Stephen(K)", floors: ["7~15층"], x: 12.6, y: 67.0, lat: 37.48518, lng: 126.80331,
+       detail: "고층부(7~15층) 중심, 복도 끝부분 및 외부 창문 주변",
+       detailEn: "Mainly on the upper floors (7F–15F), at the ends of the hallways and near exterior windows",
+       detailZh: "主要在高层（7–15层），走廊尽头及外窗附近" },
+  5: { type: "escape", name: "안드레아기숙사(A)", en: "Andreas Dormitory(A)", floors: ["4~10층"], x: 34.8, y: 65.5, lat: 37.48570, lng: 126.80302,
+       detail: "4~10층 복도 양쪽 끝의 외부 창문 주변 (사다리차가 들어오기 어려운 건물 측면 쪽, 사다리차가 닿는 전면부에는 없음)",
+       detailEn: "4F–10F, near the exterior windows at both ends of the hallway (on the sides of the building that fire ladder trucks cannot reach, not on the front)",
+       detailZh: "4–10层，走廊两端的外窗附近（位于云梯车难以到达的建筑侧面，云梯车可到达的正面没有）" }
 };
 
 // 불 아이콘이 나타날 수 있는 자리(가로·세로 %). 매일 이 중 한 곳이 골라져요.

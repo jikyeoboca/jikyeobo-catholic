@@ -78,8 +78,11 @@
     map.querySelectorAll('.pin').forEach(function (p) { p.remove(); });
     list.innerHTML = '';
 
-    let rows = Object.entries(AED_DATA)
-      .map(function ([id, b]) { return Object.assign({ id: id, type: 'aed' }, b); })
+    function withId(type) {
+      return function ([id, b]) { return Object.assign({ id: id, type: type }, b); };
+    }
+    let rows = Object.entries(AED_DATA).map(withId('aed'))
+      .concat(Object.entries(ESCAPE_DATA).map(withId('escape')))
       .filter(function (b) { return filter === 'all' || b.type === filter; });
 
     if (userPos) {
@@ -93,23 +96,26 @@
       const name = bName(b);
       const floors = bFloors(b).join(', ');
       const detail = bDetail(b);
+      const isEscape = b.type === 'escape';
+      const kind = isEscape ? t('escapeShort') : 'AED';
+      const href = (isEscape ? 'escape.html?b=' : 'aed.html?b=') + b.id;
 
       const pin = document.createElement('a');
       pin.className = 'pin';
-      pin.href = 'aed.html?b=' + b.id;
+      pin.href = href;
       pin.style.left = b.x + '%';
       pin.style.top = b.y + '%';
-      pin.setAttribute('aria-label', name + ' ' + t('aedInfo'));
+      pin.setAttribute('aria-label', name + ' ' + t(isEscape ? 'escapeInfo' : 'aedInfo'));
       pin.innerHTML =
         '<img src="' + pinSrc(b) + '" alt="">' +
         '<span class="tip"><strong>' + name + '</strong>' +
-        'AED ' + floors + '<br>' + detail + '</span>';
+        kind + ' ' + floors + '<br>' + detail + '</span>';
       map.appendChild(pin);
 
       const row = document.createElement('a');
-      row.href = 'aed.html?b=' + b.id;
+      row.href = href;
       const dist = (userPos && b.dist != null) ? '<em>' + formatDist(b.dist) + '</em>' : '';
-      row.innerHTML = '<b>' + name + '</b><span>' + floors + dist + '</span>';
+      row.innerHTML = '<b>' + name + '</b><span>' + kind + ' · ' + floors + dist + '</span>';
       list.appendChild(row);
 
       // PC: 목록에 마우스를 올리거나 키보드로 고르면 해당 핀이 움직여요
@@ -193,33 +199,33 @@
     );
   });
 
-  // ---------- 완강기 사용법 팝업 ----------
-  const escapeBtn = document.getElementById('escape-btn');
-  if (escapeBtn) {
-    escapeBtn.addEventListener('click', function () {
-      const note = t('cardNote');
-      openModal(
-        '<div class="confirm-box info-box" role="dialog" aria-modal="true" aria-labelledby="escape-title">' +
-        '<p id="escape-title">' + t('escapeTitle') + '</p>' +
-        '<p class="small">' + t('escapeP1') + '</p>' +
-        '<div class="card-carousel" data-folder="images/escape-guide" data-prefix="escape-" data-count="6" data-label="' + t('escapeTitle') + '"></div>' +
-        (note ? '<p class="small">' + note + '</p>' : '') +
-        '<p class="small">' + t('escapeP2') + '</p>' +
-        '<div class="confirm-btns"><button type="button" class="yes ok">' + t('ok') + '</button></div>' +
-        '</div>',
-        function (box, close) {
-          setupCarousel(box.querySelector('.card-carousel'));
-          box.querySelector('.yes').onclick = close;
-          box.querySelector('.yes').focus();
-        }
-      );
-    });
-  }
-
   // ---------- 소화기 안내 페이지로 이동 ----------
   const fireBtn = document.getElementById('fire-btn');
   if (fireBtn) {
     fireBtn.addEventListener('click', function () { location.href = 'fire.html'; });
+  }
+
+  // ---------- 오늘의 불 아이콘 → 소화기 사용법 팝업 ----------
+  function openFirePopup() {
+    const note = t('cardNote');
+    openModal(
+      '<div class="confirm-box info-box" role="dialog" aria-modal="true" aria-labelledby="fire-pop-title">' +
+      '<p id="fire-pop-title">' + t('firePopTitle') + '</p>' +
+      '<p class="small">' + t('firePopP1') + '</p>' +
+      '<div class="card-carousel" data-folder="images/fire-guide" data-prefix="fire" data-count="6" data-label="' + t('firePopTitle') + '"></div>' +
+      (note ? '<p class="small">' + note + '</p>' : '') +
+      '<p class="small">' + t('firePopP2') + '</p>' +
+      '<div class="confirm-btns">' +
+      '<button type="button" class="no">' + t('close') + '</button>' +
+      '<button type="button" class="yes ok">' + t('moreBtn') + '</button>' +
+      '</div></div>',
+      function (box, close) {
+        setupCarousel(box.querySelector('.card-carousel'));
+        box.querySelector('.no').onclick = close;
+        box.querySelector('.yes').onclick = function () { location.href = 'fire.html'; };
+        box.querySelector('.yes').focus();
+      }
+    );
   }
 
   // ---------- 3. 오늘의 불 아이콘 ----------
@@ -239,9 +245,7 @@
     fire.style.top = y + '%';
     fire.setAttribute('aria-label', t('fireAria'));
     fire.innerHTML = '<span aria-hidden="true">🔥</span>';
-    fire.addEventListener('click', function () {
-      location.href = 'fire.html';
-    });
+    fire.addEventListener('click', openFirePopup);
     map.appendChild(fire);
     fireEl = fire;
   }
