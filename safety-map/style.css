@@ -29,6 +29,10 @@ ol li{margin-bottom:6px}
 .report{display:inline-block;font-weight:700;color:#3b2f1e;background:var(--tan);text-decoration:none;border-radius:999px;padding:6px 16px}
 .report:hover,.report:focus-visible{filter:brightness(.92)}
 
+/* 유튜브 사용법 영상 버튼 */
+.video-btn{display:inline-block;margin:12px 0 4px;font-weight:700;color:#fff;background:#d93025;text-decoration:none;border-radius:999px;padding:8px 18px}
+.video-btn:hover,.video-btn:focus-visible{filter:brightness(.9)}
+
 /* 시설 종류 필터 */
 .filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
 .filters button{font:inherit;font-size:.95rem;font-weight:700;padding:8px 16px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer}

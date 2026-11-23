@@ -85,6 +85,11 @@
       .concat(Object.entries(ESCAPE_DATA).map(withId('escape')))
       .filter(function (b) { return filter === 'all' || b.type === filter; });
 
+    // 건물 번호순으로 묶어 보여 주고, 같은 건물 안에서는 AED → 완강기 순서
+    rows.sort(function (a, b) {
+      return (Number(a.id) - Number(b.id)) || (a.type === 'aed' ? -1 : 1) - (b.type === 'aed' ? -1 : 1);
+    });
+
     if (userPos) {
       rows.forEach(function (b) { b.dist = hasCoords(b) ? distanceM(userPos, b) : null; });
       rows.sort(function (a, b) {
@@ -213,6 +218,7 @@
       '<p id="fire-pop-title">' + t('firePopTitle') + '</p>' +
       '<p class="small">' + t('firePopP1') + '</p>' +
       '<div class="card-carousel" data-folder="images/fire-guide" data-prefix="fire" data-count="6" data-label="' + t('firePopTitle') + '"></div>' +
+      '<a class="video-btn" href="https://youtube.com/shorts/PhK9Bbx7uVk" target="_blank" rel="noopener">' + t('videoBtn') + '</a>' +
       (note ? '<p class="small">' + note + '</p>' : '') +
       '<p class="small">' + t('firePopP2') + '</p>' +
       '<div class="confirm-btns">' +

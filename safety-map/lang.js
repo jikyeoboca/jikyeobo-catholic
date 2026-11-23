@@ -94,6 +94,7 @@
       aed3: '환자의 가슴을 드러내고 패드 그림대로 오른쪽 쇄골 아래와 왼쪽 옆구리에 패드를 붙이세요.',
       aed4: '심장 리듬을 분석하는 동안 아무도 환자에게 닿지 않게 하세요.',
       aed5: '쇼크가 필요하다는 안내가 나오면 모두 물러나게 한 뒤 쇼크 버튼을 누르세요.',
+      videoBtn: '▶ 영상으로 사용법 보기',
       aed6: '바로 가슴압박을 다시 시작하고, 구급대가 올 때까지 AED(자동심장충격기) 안내를 따르세요.'
     },
 
@@ -188,6 +189,7 @@
       aed3: 'Expose the person\'s chest and place the pads as shown in the picture: below the right collarbone and on the left side of the ribs.',
       aed4: 'While the AED analyzes the heart rhythm, make sure no one touches the person.',
       aed5: 'If the AED says a shock is needed, make sure everyone stands clear, then press the shock button.',
+      videoBtn: '▶ Watch the video (in Korean)',
       aed6: 'Start chest compressions again right away, and keep following the AED instructions until emergency responders arrive.'
     },
 
@@ -282,6 +284,7 @@
       aed3: '露出患者胸部，按照电极片图示，将电极片分别贴在右锁骨下方和左侧肋部。',
       aed4: '在分析心律期间，不要让任何人接触患者。',
       aed5: '如果提示需要电击，请让所有人退开，然后按下电击按钮。',
+      videoBtn: '▶ 观看视频（韩语）',
       aed6: '立即重新开始胸外按压，并在救护人员到达前按照AED的提示操作。'
     }
   };
