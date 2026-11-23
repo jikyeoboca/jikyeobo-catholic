@@ -58,6 +58,7 @@ ol li{margin-bottom:6px}
 .list a{display:flex;justify-content:space-between;align-items:center;gap:8px;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:10px 14px;color:var(--ink);text-decoration:none}
 .list a b{font-weight:600}
 .list a span{color:var(--muted);text-align:right}
+.list a span strong{font-weight:700;color:var(--ink)}
 .list a em{font-style:normal;font-weight:700;color:var(--red);margin-left:8px}
 .empty{color:var(--muted)}
 

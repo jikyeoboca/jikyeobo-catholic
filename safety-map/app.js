@@ -120,7 +120,7 @@
       const row = document.createElement('a');
       row.href = href;
       const dist = (userPos && b.dist != null) ? '<em>' + formatDist(b.dist) + '</em>' : '';
-      row.innerHTML = '<b>' + name + '</b><span>' + kind + ' · ' + floors + dist + '</span>';
+      row.innerHTML = '<b>' + name + '</b><span><strong>' + kind + '</strong> · ' + floors + dist + '</span>';
       list.appendChild(row);
 
       // PC: 목록에 마우스를 올리거나 키보드로 고르면 해당 핀이 움직여요

@@ -65,7 +65,7 @@ const AED_DATA = {
 // 정확한 도면이 없어서 대략적인 위치예요. 완강기가 없는 건물은 넣지 않아요.
 // 숫자(4, 5)는 위 AED_DATA의 같은 건물 번호와 맞췄어요. 상세 페이지 주소: escape.html?b=번호
 const ESCAPE_DATA = {
-  4: { type: "escape", name: "스테파노기숙사(K)", en: "Dormitory Stephen(K)", floors: ["7~15층"], x: 12.6, y: 67.0, lat: 37.48518, lng: 126.80331,
+  4: { type: "escape", name: "스테파노기숙사(K)", en: "Dormitory Stephen(K)", floors: ["7~15층"], x: 11.9, y: 72.0, lat: 37.48518, lng: 126.80331,
        detail: "고층부(7~15층) 중심, 복도 끝부분 및 외부 창문 주변",
        detailEn: "Mainly on the upper floors (7F–15F), at the ends of the hallways and near exterior windows",
        detailZh: "主要在高层（7–15层），走廊尽头及外窗附近" },
