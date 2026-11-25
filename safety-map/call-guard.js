@@ -3,18 +3,19 @@ document.addEventListener('click', function (e) {
   if (!link) return;
   e.preventDefault();
   const number = link.getAttribute('href').slice(4);
+  // 지금 고른 언어의 문구를 가져와 {n} 자리에 전화번호를 넣어요
+  function msg(key) { return window.t(key).split('{n}').join(number); }
 
   const back = document.createElement('div');
   back.className = 'confirm-backdrop';
   back.innerHTML =
     '<div class="confirm-box" role="dialog" aria-modal="true" aria-labelledby="call-title" aria-describedby="call-desc">' +
-    '<p id="call-title">⚠️ ' + number + ' 긴급전화 연결 안내</p>' +
-    '<p id="call-desc" class="call-warn">이 버튼은 실제 ' + number + ' 긴급전화로 연결됩니다.<br>' +
-    '화재, 응급환자, 구조 요청 등 실제 긴급상황에서만 이용해 주세요.</p>' +
-    '<p class="call-question">정말로 ' + number + '에 전화하시겠습니까?</p>' +
+    '<p id="call-title">' + msg('callTitle') + '</p>' +
+    '<p id="call-desc" class="call-warn">' + msg('callWarn') + '</p>' +
+    '<p class="call-question">' + msg('callQ') + '</p>' +
     '<div class="confirm-btns">' +
-    '<button type="button" class="no">아니오</button>' +
-    '<button type="button" class="yes">예</button>' +
+    '<button type="button" class="no">' + msg('callNo') + '</button>' +
+    '<button type="button" class="yes">' + msg('callYes') + '</button>' +
     '</div></div>';
   document.body.appendChild(back);
 
