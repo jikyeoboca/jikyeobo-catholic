@@ -210,6 +210,27 @@
     fireBtn.addEventListener('click', function () { location.href = 'fire.html'; });
   }
 
+  // ---------- 도움말 팝업 (서비스 이용 방법) ----------
+  const helpBtn = document.getElementById('help-btn');
+  if (helpBtn) {
+    helpBtn.addEventListener('click', function () {
+      let steps = '';
+      for (let i = 1; i <= 6; i++) steps += '<li>' + t('help' + i) + '</li>';
+      openModal(
+        '<div class="confirm-box info-box" role="dialog" aria-modal="true" aria-labelledby="help-title">' +
+        '<p id="help-title">' + t('helpTitle') + '</p>' +
+        '<ol>' + steps + '</ol>' +
+        '<p class="small">' + t('helpNote') + '</p>' +
+        '<div class="confirm-btns"><button type="button" class="yes ok">' + t('close') + '</button></div>' +
+        '</div>',
+        function (box, close) {
+          box.querySelector('.yes').onclick = close;
+          box.querySelector('.yes').focus();
+        }
+      );
+    });
+  }
+
   // ---------- 오늘의 불 아이콘 → 소화기 사용법 팝업 ----------
   function openFirePopup() {
     const note = t('cardNote');
